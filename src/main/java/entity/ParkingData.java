@@ -2,30 +2,36 @@ package entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Entity
+@Table(name = "parkings")
 public class ParkingData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private final Long id;
+    private Long id;
 
+    @Column(name = "garage_id", nullable = false)
     @NotBlank
-    private final ParkingGarage parkingGarage;
+    private ParkingGarage parkingGarage;
 
+    @Column(name = "car_id", nullable = false)
     @NotBlank
-    private final Car car;
+    private Car car;
 
-    @NotBlank
-    private final LocalDateTime startTime;
+    @Column(name = "start_time", nullable = false)
+    @NotNull
+    private LocalDateTime startTime;
 
-    @NotBlank
-    private final LocalDateTime endTime;
+    @Column(name = "end_time", nullable = false)
+    @NotNull
+    private  LocalDateTime endTime;
 
 }

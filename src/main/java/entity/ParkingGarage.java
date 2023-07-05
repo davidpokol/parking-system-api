@@ -12,15 +12,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "parking_garages")
 public class ParkingGarage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "address", nullable = false)
     @NotBlank
     private String address;
 
+    @Column(name = "parking_spaces", nullable = false)
     @NotNull
     @Min(value = 1)
     private Integer numberOfParkingSpaces;
