@@ -6,6 +6,7 @@ import com.davidpokolol.parkingsystemapi.model.response.VehicleResponse;
 import com.davidpokolol.parkingsystemapi.service.model.dto.ParkingDTO;
 import com.davidpokolol.parkingsystemapi.service.model.dto.ParkingGarageDTO;
 import com.davidpokolol.parkingsystemapi.service.model.dto.VehicleDTO;
+import jakarta.annotation.Nonnull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
@@ -20,7 +21,8 @@ public class ParkingDtoToResponseConverter implements Converter<ParkingDTO, Park
     private final Converter<VehicleDTO, VehicleResponse> vehicleDtoToResponseConverter;
 
     @Override
-    public ParkingResponse convert(ParkingDTO source) {
+    public ParkingResponse convert(@Nonnull final ParkingDTO source) {
+
         log.info("Convert ParkingDTO:{} to ParkingResponse.", source);
         return new ParkingResponse(
                 source.id(),

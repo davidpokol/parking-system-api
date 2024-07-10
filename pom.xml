@@ -27,7 +27,9 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot.version>3.3.1</spring-boot.version>
+        <postgres-db.version>42.7.3</postgres-db.version>
         <lombok.version>1.18.30</lombok.version>
+        <dotenv.version>4.0.0</dotenv.version>
     </properties>
 
     <dependencyManagement>
@@ -53,6 +55,11 @@
                 <version>${spring-boot.version}</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgres-db.version}</version>
+            </dependency>
             <!-- UTIL -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -60,8 +67,11 @@
                 <optional>true</optional>
                 <version>${lombok.version}</version>
             </dependency>
+            <dependency>
+                <groupId>me.paulschwarz</groupId>
+                <artifactId>spring-dotenv</artifactId>
+                <version>${dotenv.version}</version>
+            </dependency>
         </dependencies>
-
     </dependencyManagement>
-
 </project>
