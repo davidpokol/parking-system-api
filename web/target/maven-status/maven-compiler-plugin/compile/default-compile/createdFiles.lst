@@ -1,1 +1,8 @@
+com\davidpokolol\parkingsystemapi\model\response\VehicleResponse.class
 com\davidpokolol\parkingsystemapi\Application.class
+com\davidpokolol\parkingsystemapi\contoller\VehicleController.class
+com\davidpokolol\parkingsystemapi\converter\VehicleDtoToResponseConverter.class
+com\davidpokolol\parkingsystemapi\model\response\ParkingGarageResponse.class
+com\davidpokolol\parkingsystemapi\model\response\ParkingResponse.class
+com\davidpokolol\parkingsystemapi\converter\ParkingDtoToResponseConverter.class
+com\davidpokolol\parkingsystemapi\converter\ParkingGarageDtoToResponseConverter.class
