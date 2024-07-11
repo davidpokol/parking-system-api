@@ -1,5 +1,6 @@
 package com.davidpokolol.parkingsystemapi.contoller.handler;
 
+import com.davidpokolol.parkingsystemapi.model.exception.EntityNotFoundException;
 import com.davidpokolol.parkingsystemapi.service.model.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -17,9 +18,9 @@ public class GlobalExceptionHandler {
         return "Szerver oldali hiba, kérem lépjen kapcsolatba az üzemeltetövel!";
     }
 
-    @ExceptionHandler(NotFoundException.class)
+    @ExceptionHandler({EntityNotFoundException.class, NotFoundException.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String handleNotFoundException(final NotFoundException e) {
+    public String handleNotFoundException(final RuntimeException e) {
         log.error("Resource is not existing:", e);
         return e.getMessage();
     }

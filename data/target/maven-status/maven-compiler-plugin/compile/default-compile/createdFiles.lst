@@ -1,1 +1,8 @@
 com\davidpokolol\parkingsystemapi\model\enums\VehicleCategory.class
+com\davidpokolol\parkingsystemapi\repository\ParkingRepository.class
+com\davidpokolol\parkingsystemapi\model\Vehicle.class
+com\davidpokolol\parkingsystemapi\model\Parking.class
+com\davidpokolol\parkingsystemapi\repository\VehicleRepository.class
+com\davidpokolol\parkingsystemapi\model\exception\EntityNotFoundException.class
+com\davidpokolol\parkingsystemapi\repository\ParkingGarageRepository.class
+com\davidpokolol\parkingsystemapi\model\ParkingGarage.class

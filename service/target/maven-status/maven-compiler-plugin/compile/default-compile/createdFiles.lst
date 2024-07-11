@@ -1,3 +1,13 @@
-com\davidpokolol\parkingsystemapi\service\model\dto\ParkingGarageDTO.class
-com\davidpokolol\parkingsystemapi\service\model\dto\VehicleDTO.class
+com\davidpokolol\parkingsystemapi\service\service\impl\ParkingServiceImpl.class
+com\davidpokolol\parkingsystemapi\service\service\VehicleService.class
 com\davidpokolol\parkingsystemapi\service\model\dto\ParkingDTO.class
+com\davidpokolol\parkingsystemapi\service\model\exception\NotEnoughParkingSpaceException.class
+com\davidpokolol\parkingsystemapi\service\service\ParkingService.class
+com\davidpokolol\parkingsystemapi\service\model\dto\VehicleDTO.class
+com\davidpokolol\parkingsystemapi\service\converter\VehicleDtoToEntityConverter.class
+com\davidpokolol\parkingsystemapi\service\model\exception\NotFoundException.class
+com\davidpokolol\parkingsystemapi\service\model\dto\ParkingGarageDTO.class
+com\davidpokolol\parkingsystemapi\service\converter\VehicleEntityToDtoConverter.class
+com\davidpokolol\parkingsystemapi\service\service\impl\ParkingGarageServiceImpl.class
+com\davidpokolol\parkingsystemapi\service\service\impl\VehicleServiceImpl.class
+com\davidpokolol\parkingsystemapi\service\service\ParkingGarageService.class

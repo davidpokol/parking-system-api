@@ -1,6 +1,7 @@
 package com.davidpokolol.parkingsystemapi.service.service.impl;
 
 import com.davidpokolol.parkingsystemapi.model.Vehicle;
+import com.davidpokolol.parkingsystemapi.model.exception.EntityNotFoundException;
 import com.davidpokolol.parkingsystemapi.repository.VehicleRepository;
 import com.davidpokolol.parkingsystemapi.service.model.dto.VehicleDTO;
 import com.davidpokolol.parkingsystemapi.service.model.exception.NotFoundException;
@@ -40,6 +41,8 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public VehicleDTO createVehicle(final VehicleDTO vehicle) {
+
+        log.info("Creating vehicle: {}", vehicle);
         return Optional.ofNullable(vehicle)
                 .map(vehicleDtoToEntityConverter::convert)
                 .map(vehicleRepository::save)
@@ -48,12 +51,27 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public VehicleDTO updateVehicle(final Long id, VehicleDTO vehicleDTO) {
-        return null;
+    public VehicleDTO updateVehicle(final Long id, final VehicleDTO vehicle) {
+
+        log.info("Updating vehicle with ID:{} to: {}", id, vehicle);
+        vehicleRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(
+                String.format("Vehicle with id %d not found", id)
+        ));
+        return Optional.ofNullable(vehicle)
+                .map(vehicleDtoToEntityConverter::convert)
+                .map(v -> {
+                    v.setId(id);
+                    return v;
+                })
+                .map(vehicleRepository::save)
+                .map(vehicleEntityToDtoConverter::convert)
+                .orElseThrow(() -> new IllegalArgumentException("Provided parameter is invalid: " + vehicle));
     }
 
     @Override
-    public void deleteVehicle(Long id) {
+    public void deleteVehicle(final Long id) {
 
+        log.info("Deleting Vehicle with ID:{}.", id);
+        vehicleRepository.deleteById(id);
     }
 }

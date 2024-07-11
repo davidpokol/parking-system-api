@@ -1,8 +1,12 @@
 C:\Users\david\Documents\coding\portfolio\parking-system-api\web\src\main\java\com\davidpokolol\parkingsystemapi\Application.java
+C:\Users\david\Documents\coding\portfolio\parking-system-api\web\src\main\java\com\davidpokolol\parkingsystemapi\contoller\handler\GlobalExceptionHandler.java
+C:\Users\david\Documents\coding\portfolio\parking-system-api\web\src\main\java\com\davidpokolol\parkingsystemapi\contoller\ParkingController.java
+C:\Users\david\Documents\coding\portfolio\parking-system-api\web\src\main\java\com\davidpokolol\parkingsystemapi\contoller\ParkingGarageController.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\web\src\main\java\com\davidpokolol\parkingsystemapi\contoller\VehicleController.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\web\src\main\java\com\davidpokolol\parkingsystemapi\converter\ParkingDtoToResponseConverter.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\web\src\main\java\com\davidpokolol\parkingsystemapi\converter\ParkingGarageDtoToResponseConverter.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\web\src\main\java\com\davidpokolol\parkingsystemapi\converter\VehicleDtoToResponseConverter.java
+C:\Users\david\Documents\coding\portfolio\parking-system-api\web\src\main\java\com\davidpokolol\parkingsystemapi\model\response\BadRequestResponse.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\web\src\main\java\com\davidpokolol\parkingsystemapi\model\response\ParkingGarageResponse.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\web\src\main\java\com\davidpokolol\parkingsystemapi\model\response\ParkingResponse.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\web\src\main\java\com\davidpokolol\parkingsystemapi\model\response\VehicleResponse.java

@@ -8,9 +8,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -64,5 +66,24 @@ public class VehicleController {
                 .map(vehicleDtoToResponseConverter::convert)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.badRequest().build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<VehicleResponse> updateVehicle(@PathVariable final Long id,
+                                                         @RequestBody final VehicleDTO vehicleDTO) {
+
+        log.info("Updating vehicle with ID:{} to: {}", id, vehicleDTO);
+        return Optional.of(vehicleService.updateVehicle(id, vehicleDTO))
+                .map(vehicleDtoToResponseConverter::convert)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.badRequest().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteVehicle(@PathVariable final Long id) {
+
+        log.info("Deleting vehicle with ID: {}", id);
+        vehicleService.deleteVehicle(id);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -14,8 +14,6 @@
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
     </properties>
 
     <dependencies>
@@ -54,11 +52,10 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.davidpokolol.Application</mainClass>
+                    <mainClass>com.davidpokolol.parkingsystemapi.Application</mainClass>
                     <addResources>true</addResources>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
 </project>
