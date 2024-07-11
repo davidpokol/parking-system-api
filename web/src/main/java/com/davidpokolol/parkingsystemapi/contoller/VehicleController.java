@@ -19,6 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
+import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.CREATE_VEHICLE_TEXT;
+import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.DELETE_VEHICLE_TEXT;
+import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.GET_ALL_VEHICLES_TEXT;
+import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.GET_VEHICLE_BY_ID_TEXT;
+import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.UPDATE_VEHICLE_TEXT;
+
 @RestController
 @RequestMapping("/vehicles")
 @RequiredArgsConstructor
@@ -31,7 +37,7 @@ public class VehicleController {
     @GetMapping
     public ResponseEntity<List<VehicleResponse>> getAllVehicles() {
 
-        log.info("Getting all vehicles.");
+        log.info(GET_ALL_VEHICLES_TEXT);
         List<VehicleResponse> vehicles =
                 vehicleService
                         .getAllVehicles()
@@ -45,20 +51,17 @@ public class VehicleController {
     @GetMapping("/{id}")
     public ResponseEntity<VehicleResponse> getVehicleById(@PathVariable final Long id) {
 
-        log.info("Getting a vehicle with ID: {}", id);
+        log.info(GET_VEHICLE_BY_ID_TEXT, id);
         Optional<VehicleDTO> vehicle = vehicleService.getVehicle(id);
         return vehicle.map(vehicleDtoToResponseConverter::convert)
                 .map(ResponseEntity::ok)
-                .orElseGet(() -> {
-                    log.warn("Vehicle not found with ID: {}", id);
-                    return ResponseEntity.notFound().build();
-                });
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
     public ResponseEntity<VehicleResponse> addVehicle(@RequestBody final VehicleDTO vehicle) {
 
-        log.info("Creating a vehicle: {}", vehicle);
+        log.info(CREATE_VEHICLE_TEXT, vehicle);
         return Optional.of(vehicleService.createVehicle(vehicle))
                 .map(vehicleDtoToResponseConverter::convert)
                 .map(ResponseEntity::ok)
@@ -69,7 +72,7 @@ public class VehicleController {
     public ResponseEntity<VehicleResponse> updateVehicle(@PathVariable final Long id,
                                                          @RequestBody final VehicleDTO vehicle) {
 
-        log.info("Updating a vehicle with ID:{} to: {}", id, vehicle);
+        log.info(UPDATE_VEHICLE_TEXT, id, vehicle);
         return Optional.of(vehicleService.updateVehicle(id, vehicle))
                 .map(vehicleDtoToResponseConverter::convert)
                 .map(ResponseEntity::ok)
@@ -79,7 +82,7 @@ public class VehicleController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteVehicle(@PathVariable final Long id) {
 
-        log.info("Deleting a vehicle with ID: {}", id);
+        log.info(DELETE_VEHICLE_TEXT, id);
         vehicleService.deleteVehicle(id);
         return ResponseEntity.noContent().build();
     }
