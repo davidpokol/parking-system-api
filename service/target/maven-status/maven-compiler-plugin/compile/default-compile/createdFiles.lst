@@ -1,3 +1,4 @@
+com\davidpokolol\parkingsystemapi\service\converter\ParkingGarageEntityToDtoConverter.class
 com\davidpokolol\parkingsystemapi\service\service\impl\ParkingServiceImpl.class
 com\davidpokolol\parkingsystemapi\service\service\VehicleService.class
 com\davidpokolol\parkingsystemapi\service\model\dto\ParkingDTO.class
@@ -8,6 +9,7 @@ com\davidpokolol\parkingsystemapi\service\converter\VehicleDtoToEntityConverter.
 com\davidpokolol\parkingsystemapi\service\model\exception\NotFoundException.class
 com\davidpokolol\parkingsystemapi\service\model\dto\ParkingGarageDTO.class
 com\davidpokolol\parkingsystemapi\service\converter\VehicleEntityToDtoConverter.class
+com\davidpokolol\parkingsystemapi\service\converter\ParkingGarageDtoToEntityConverter.class
 com\davidpokolol\parkingsystemapi\service\service\impl\ParkingGarageServiceImpl.class
 com\davidpokolol\parkingsystemapi\service\service\impl\VehicleServiceImpl.class
 com\davidpokolol\parkingsystemapi\service\service\ParkingGarageService.class

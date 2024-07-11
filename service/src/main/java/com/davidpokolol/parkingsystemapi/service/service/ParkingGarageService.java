@@ -11,9 +11,9 @@ public interface ParkingGarageService {
 
     Optional<ParkingGarageDTO> getParkingGarage(final Long id);
 
-    ParkingGarageDTO createParkingGarage(final ParkingGarageDTO parkingGarageDTO);
+    ParkingGarageDTO createParkingGarage(final ParkingGarageDTO parkingGarage);
 
-    ParkingGarageDTO updateParkingGarage(final Long id, final ParkingGarageDTO parkingGarageDTO);
+    ParkingGarageDTO updateParkingGarage(final Long id, final ParkingGarageDTO parkingGarage);
 
     void deleteParkingGarage(final Long id);
 }

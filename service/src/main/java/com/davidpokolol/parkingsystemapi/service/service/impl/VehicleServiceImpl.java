@@ -25,7 +25,8 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public List<VehicleDTO> getAllVehicles() {
-        log.info("Get all vehicles.");
+
+        log.info("Getting all vehicles.");
         return vehicleRepository.findAll().stream()
                 .map(vehicleEntityToDtoConverter::convert)
                 .toList();
@@ -33,16 +34,17 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public Optional<VehicleDTO> getVehicle(final Long id) {
-        log.info("Get a Vehicle with ID:{}", id);
+
+        log.info("Getting a vehicle with ID:{}", id);
         return Optional.ofNullable(vehicleRepository.findById(id)
                 .map(vehicleEntityToDtoConverter::convert)
-                .orElseThrow(() -> new NotFoundException("There is no Product with ID:" + id)));
+                .orElseThrow(() -> new NotFoundException("There is no vehicle with ID:" + id)));
     }
 
     @Override
     public VehicleDTO createVehicle(final VehicleDTO vehicle) {
 
-        log.info("Creating vehicle: {}", vehicle);
+        log.info("Creating a vehicle: {}", vehicle);
         return Optional.ofNullable(vehicle)
                 .map(vehicleDtoToEntityConverter::convert)
                 .map(vehicleRepository::save)
@@ -53,9 +55,9 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public VehicleDTO updateVehicle(final Long id, final VehicleDTO vehicle) {
 
-        log.info("Updating vehicle with ID:{} to: {}", id, vehicle);
+        log.info("Updating a vehicle with ID:{} to: {}", id, vehicle);
         vehicleRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(
-                String.format("Vehicle with id %d not found", id)
+                "Vehicle not found with ID: " + id
         ));
         return Optional.ofNullable(vehicle)
                 .map(vehicleDtoToEntityConverter::convert)
@@ -71,7 +73,7 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public void deleteVehicle(final Long id) {
 
-        log.info("Deleting Vehicle with ID:{}.", id);
+        log.info("Deleting a vehicle with ID:{}.", id);
         vehicleRepository.deleteById(id);
     }
 }
