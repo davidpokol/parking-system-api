@@ -18,8 +18,10 @@ import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstant
 import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.DELETE_VEHICLE_TEXT;
 import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.GET_ALL_VEHICLES_TEXT;
 import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.GET_VEHICLE_BY_ID_TEXT;
+import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.GET_VEHICLE_BY_LICENSE_PLATE_TEXT;
 import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.UPDATE_VEHICLE_TEXT;
-import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.VEHICLE_NOT_FOUND_TEXT;
+import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.VEHICLE_NOT_FOUND_WITH_ID_TEXT;
+import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.VEHICLE_NOT_FOUND_WITH_LICENSE_PLATE_TEXT;
 
 @Service
 @RequiredArgsConstructor
@@ -46,7 +48,18 @@ public class VehicleServiceImpl implements VehicleService {
         return Optional.ofNullable(vehicleRepository.findById(id)
                 .map(vehicleEntityToDtoConverter::convert)
                 .orElseThrow(() -> new EntityNotFoundException(
-                        VEHICLE_NOT_FOUND_TEXT + id
+                        VEHICLE_NOT_FOUND_WITH_ID_TEXT + id
+                ))
+        );
+    }
+
+    @Override
+    public Optional<VehicleDTO> getVehicle(String licensePlate) {
+        log.info(GET_VEHICLE_BY_LICENSE_PLATE_TEXT, licensePlate);
+        return Optional.ofNullable(vehicleRepository.findByLicensePlate(licensePlate)
+                .map(vehicleEntityToDtoConverter::convert)
+                .orElseThrow(() -> new EntityNotFoundException(
+                        VEHICLE_NOT_FOUND_WITH_LICENSE_PLATE_TEXT + licensePlate
                 ))
         );
     }
@@ -69,7 +82,7 @@ public class VehicleServiceImpl implements VehicleService {
 
         log.info(UPDATE_VEHICLE_TEXT, id, vehicle);
         vehicleRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(
-                VEHICLE_NOT_FOUND_TEXT + id
+                VEHICLE_NOT_FOUND_WITH_ID_TEXT + id
         ));
         return Optional.ofNullable(vehicle)
                 .map(vehicleDtoToEntityConverter::convert)

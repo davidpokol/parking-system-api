@@ -39,14 +39,13 @@ public class ParkingGarageController {
     public ResponseEntity<List<ParkingGarageResponse>> getAllParkingGarages() {
 
         log.info(GET_ALL_PARKING_GARAGES_TEXT);
-        List<ParkingGarageResponse> parkingGarages =
+        return ResponseEntity.ok(
                 parkingGarageService
                         .getAllParkingGarages()
                         .stream()
                         .map(parkingGarageDtoToResponseConverter::convert)
-                        .toList();
-
-        return ResponseEntity.ok(parkingGarages);
+                        .toList()
+        );
     }
 
     @GetMapping("/{id}")

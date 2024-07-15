@@ -10,5 +10,5 @@ public class ParkingGarageConstants {
     public static final String CREATE_PARKING_GARAGE_TEXT = "Creating a parking garage: {}";
     public static final String UPDATE_PARKING_GARAGE_TEXT = "Updating a parking garage with ID: {} to: {}";
     public static final String DELETE_PARKING_GARAGE_TEXT = "Deleting a parking garage with ID: {}";
-    public static final String PARKING_GARAGE_NOT_FOUND_TEXT = "Parking Garage not found with ID: ";
+    public static final String PARKING_GARAGE_NOT_FOUND_TEXT = "Parking garage not found with ID: ";
 }

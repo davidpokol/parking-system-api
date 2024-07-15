@@ -11,6 +11,8 @@ public interface VehicleService {
 
     Optional<VehicleDTO> getVehicle(final Long id);
 
+    Optional<VehicleDTO> getVehicle(final String licensePlate);
+
     VehicleDTO createVehicle(final VehicleDTO vehicle);
 
     VehicleDTO updateVehicle(final Long id, final VehicleDTO vehicle);

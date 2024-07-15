@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 
 public record ParkingDTO(
         Long id,
-        VehicleDTO vehicle,
-        ParkingGarageDTO parkingGarage,
+        String vehicleLicensePlate,
+        Long parkingGarageId,
         LocalDateTime startTime,
         LocalDateTime endTime
 ) {

@@ -11,5 +11,5 @@ public interface ParkingService {
 
     Optional<ParkingDTO> getParkingRecord(final Long id);
 
-    ParkingDTO createParkingRecord(final ParkingDTO parkingData);
+    ParkingDTO createParkingRecord(final ParkingDTO parkingRecord);
 }

@@ -9,9 +9,10 @@ com\davidpokolol\parkingsystemapi\service\constant\ParkingConstants.class
 com\davidpokolol\parkingsystemapi\service\service\ParkingService.class
 com\davidpokolol\parkingsystemapi\service\model\dto\VehicleDTO.class
 com\davidpokolol\parkingsystemapi\service\converter\VehicleDtoToEntityConverter.class
-com\davidpokolol\parkingsystemapi\service\model\exception\NotFoundException.class
 com\davidpokolol\parkingsystemapi\service\model\dto\ParkingGarageDTO.class
 com\davidpokolol\parkingsystemapi\service\converter\VehicleEntityToDtoConverter.class
+com\davidpokolol\parkingsystemapi\service\converter\ParkingDtoToEntityConverter.class
+com\davidpokolol\parkingsystemapi\service\converter\ParkingEntityToDtoConverter.class
 com\davidpokolol\parkingsystemapi\service\converter\ParkingGarageDtoToEntityConverter.class
 com\davidpokolol\parkingsystemapi\service\service\impl\ParkingGarageServiceImpl.class
 com\davidpokolol\parkingsystemapi\service\service\impl\VehicleServiceImpl.class

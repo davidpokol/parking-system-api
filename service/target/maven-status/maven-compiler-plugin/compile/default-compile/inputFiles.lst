@@ -2,6 +2,8 @@ C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\ja
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\constant\ParkingConstants.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\constant\ParkingGarageConstants.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\constant\VehicleConstants.java
+C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\converter\ParkingDtoToEntityConverter.java
+C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\converter\ParkingEntityToDtoConverter.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\converter\ParkingGarageDtoToEntityConverter.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\converter\ParkingGarageEntityToDtoConverter.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\converter\VehicleDtoToEntityConverter.java
@@ -10,7 +12,6 @@ C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\ja
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\model\dto\ParkingGarageDTO.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\model\dto\VehicleDTO.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\model\exception\NotEnoughParkingSpaceException.java
-C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\model\exception\NotFoundException.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\service\impl\ParkingGarageServiceImpl.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\service\impl\ParkingServiceImpl.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\service\impl\VehicleServiceImpl.java
