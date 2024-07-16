@@ -1,5 +1,8 @@
 package com.davidpokolol.parkingsystemapi.model.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum VehicleCategory {
     M1,
     N1,
@@ -8,5 +11,5 @@ public enum VehicleCategory {
     L,
     O,
     T,
-    C
+    C,
 }

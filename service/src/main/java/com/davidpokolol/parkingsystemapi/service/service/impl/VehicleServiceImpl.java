@@ -56,7 +56,7 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public Optional<VehicleDTO> getVehicle(String licensePlate) {
         log.info(GET_VEHICLE_BY_LICENSE_PLATE_TEXT, licensePlate);
-        return Optional.ofNullable(vehicleRepository.findByLicensePlate(licensePlate)
+        return Optional.ofNullable(vehicleRepository.findByLicensePlateIgnoreCase(licensePlate)
                 .map(vehicleEntityToDtoConverter::convert)
                 .orElseThrow(() -> new EntityNotFoundException(
                         VEHICLE_NOT_FOUND_WITH_LICENSE_PLATE_TEXT + licensePlate

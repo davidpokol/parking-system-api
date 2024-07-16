@@ -3,10 +3,13 @@ package com.davidpokolol.parkingsystemapi.contoller;
 import com.davidpokolol.parkingsystemapi.model.response.ParkingGarageResponse;
 import com.davidpokolol.parkingsystemapi.service.model.dto.ParkingGarageDTO;
 import com.davidpokolol.parkingsystemapi.service.service.ParkingGarageService;
+import com.davidpokolol.parkingsystemapi.util.RequestValidationHandlerUtil;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,7 +37,6 @@ public class ParkingGarageController {
     private final ParkingGarageService parkingGarageService;
     private final Converter<ParkingGarageDTO, ParkingGarageResponse> parkingGarageDtoToResponseConverter;
 
-
     @GetMapping
     public ResponseEntity<List<ParkingGarageResponse>> getAllParkingGarages() {
 
@@ -61,9 +63,11 @@ public class ParkingGarageController {
 
     @PostMapping
     public ResponseEntity<ParkingGarageResponse> addParkingGarage(
-            @RequestBody final ParkingGarageDTO parkingGarage) {
+            @Valid @RequestBody final ParkingGarageDTO parkingGarage,
+            BindingResult bindingResult) {
 
         log.info(CREATE_PARKING_GARAGE_TEXT, parkingGarage);
+        RequestValidationHandlerUtil.checkForParkingGarageRequestErrors(bindingResult);
         return Optional.of(parkingGarageService.createParkingGarage(parkingGarage))
                 .map(parkingGarageDtoToResponseConverter::convert)
                 .map(ResponseEntity::ok)
@@ -72,9 +76,12 @@ public class ParkingGarageController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ParkingGarageResponse> updateParkingGarage(
-            @PathVariable final Long id, @RequestBody final ParkingGarageDTO parkingGarage) {
+            @PathVariable final Long id,
+            @Valid @RequestBody final ParkingGarageDTO parkingGarage,
+            BindingResult bindingResult) {
 
         log.info(UPDATE_PARKING_GARAGE_TEXT, id, parkingGarage);
+        RequestValidationHandlerUtil.checkForParkingGarageRequestErrors(bindingResult);
         return Optional.of(parkingGarageService.updateParkingGarage(id, parkingGarage))
                 .map(parkingGarageDtoToResponseConverter::convert)
                 .map(ResponseEntity::ok)

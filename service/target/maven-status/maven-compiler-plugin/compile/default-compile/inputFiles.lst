@@ -11,6 +11,7 @@ C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\ja
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\model\dto\ParkingDTO.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\model\dto\ParkingGarageDTO.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\model\dto\VehicleDTO.java
+C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\model\exception\EnumConversionException.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\model\exception\NotEnoughParkingSpaceException.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\service\impl\ParkingGarageServiceImpl.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\service\impl\ParkingServiceImpl.java
@@ -18,3 +19,4 @@ C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\ja
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\service\ParkingGarageService.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\service\ParkingService.java
 C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\service\VehicleService.java
+C:\Users\david\Documents\coding\portfolio\parking-system-api\service\src\main\java\com\davidpokolol\parkingsystemapi\service\util\ConverterUtil.java

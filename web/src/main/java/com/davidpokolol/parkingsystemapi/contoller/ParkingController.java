@@ -3,10 +3,13 @@ package com.davidpokolol.parkingsystemapi.contoller;
 import com.davidpokolol.parkingsystemapi.model.response.ParkingResponse;
 import com.davidpokolol.parkingsystemapi.service.model.dto.ParkingDTO;
 import com.davidpokolol.parkingsystemapi.service.service.ParkingService;
+import com.davidpokolol.parkingsystemapi.util.RequestValidationHandlerUtil;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,9 +57,11 @@ public class ParkingController {
     }
 
     @PostMapping
-    public ResponseEntity<ParkingResponse> addParkingGarage(@RequestBody final ParkingDTO parking) {
+    public ResponseEntity<ParkingResponse> addParkingGarage(@Valid @RequestBody final ParkingDTO parking,
+                                                            BindingResult bindingResult) {
 
         log.info(CREATE_PARKING_RECORD_TEXT, parking);
+        RequestValidationHandlerUtil.checkForParkingRequestErrors(bindingResult);
         return Optional.of(parkingService.createParkingRecord(parking))
                 .map(parkingDtoToResponseConverter::convert)
                 .map(ResponseEntity::ok)

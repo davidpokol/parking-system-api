@@ -5,6 +5,6 @@ import com.davidpokolol.parkingsystemapi.model.enums.VehicleCategory;
 public record VehicleResponse(
         Long id,
         String licensePlate,
-        VehicleCategory vehicleCategory
+        String vehicleCategory
 ) {
 }

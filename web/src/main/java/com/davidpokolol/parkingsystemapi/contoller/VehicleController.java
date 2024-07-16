@@ -1,12 +1,16 @@
 package com.davidpokolol.parkingsystemapi.contoller;
 
+import com.davidpokolol.parkingsystemapi.model.exception.InvalidVehicleRequestException;
 import com.davidpokolol.parkingsystemapi.model.response.VehicleResponse;
 import com.davidpokolol.parkingsystemapi.service.model.dto.VehicleDTO;
 import com.davidpokolol.parkingsystemapi.service.service.VehicleService;
+import com.davidpokolol.parkingsystemapi.util.RequestValidationHandlerUtil;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,9 +63,11 @@ public class VehicleController {
     }
 
     @PostMapping
-    public ResponseEntity<VehicleResponse> addVehicle(@RequestBody final VehicleDTO vehicle) {
+    public ResponseEntity<VehicleResponse> addVehicle(@Valid @RequestBody final VehicleDTO vehicle,
+                                                      BindingResult bindingResult) throws InvalidVehicleRequestException {
 
         log.info(CREATE_VEHICLE_TEXT, vehicle);
+        RequestValidationHandlerUtil.checkForVehicleRequestErrors(bindingResult);
         return Optional.of(vehicleService.createVehicle(vehicle))
                 .map(vehicleDtoToResponseConverter::convert)
                 .map(ResponseEntity::ok)
@@ -70,9 +76,11 @@ public class VehicleController {
 
     @PutMapping("/{id}")
     public ResponseEntity<VehicleResponse> updateVehicle(@PathVariable final Long id,
-                                                         @RequestBody final VehicleDTO vehicle) {
+                                                         @Valid @RequestBody final VehicleDTO vehicle,
+                                                         BindingResult bindingResult) {
 
         log.info(UPDATE_VEHICLE_TEXT, id, vehicle);
+        RequestValidationHandlerUtil.checkForVehicleRequestErrors(bindingResult);
         return Optional.of(vehicleService.updateVehicle(id, vehicle))
                 .map(vehicleDtoToResponseConverter::convert)
                 .map(ResponseEntity::ok)

@@ -13,4 +13,7 @@ public class VehicleConstants {
     public static final String DELETE_VEHICLE_TEXT = "Deleting a vehicle with ID: {}.";
     public static final String VEHICLE_NOT_FOUND_WITH_ID_TEXT = "Vehicle not found with ID: ";
     public static final String VEHICLE_NOT_FOUND_WITH_LICENSE_PLATE_TEXT = "Vehicle not found with license plate: ";
+
+    public static final String VEHICLE_LICENSE_PLATE_PATTERN = "^([A-Z]{3}-?\\d{3}|[A-Z]{4}-?\\d{3})$";
+    public static final String VEHICLE_PATTERN_DOES_NOT_MATCH = "must be a hungarian license plate";
 }

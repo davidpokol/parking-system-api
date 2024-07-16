@@ -46,7 +46,7 @@ public class ParkingDtoToEntityConverter implements Converter<ParkingDTO, Parkin
     }
 
     private List<Vehicle> getVehicles(String licensePlate) {
-        return vehicleRepository.findByLicensePlate(licensePlate)
+        return vehicleRepository.findByLicensePlateIgnoreCase(licensePlate)
                 .map(List::of)
                 .orElseThrow(() -> new EntityNotFoundException(
                         VEHICLE_NOT_FOUND_WITH_LICENSE_PLATE_TEXT + licensePlate

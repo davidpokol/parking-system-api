@@ -18,7 +18,7 @@ public class VehicleEntityToDtoConverter implements Converter<Vehicle, VehicleDT
         return new VehicleDTO(
                 source.getId(),
                 source.getLicensePlate(),
-                source.getVehicleCategory()
+                source.getVehicleCategory().toString()
         );
     }
 }
