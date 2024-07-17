@@ -1,6 +1,5 @@
 package com.davidpokolol.parkingsystemapi.service.model.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
@@ -12,7 +11,7 @@ public record VehicleDTO(
         @Pattern(regexp = VEHICLE_LICENSE_PLATE_PATTERN,
                 message = VEHICLE_PATTERN_DOES_NOT_MATCH,
                 flags = Pattern.Flag.CASE_INSENSITIVE)
-        @NotBlank
+        @NotNull
         String licensePlate,
 
         @NotNull

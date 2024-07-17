@@ -5,6 +5,7 @@ import com.davidpokolol.parkingsystemapi.model.exception.InvalidParkingGarageReq
 import com.davidpokolol.parkingsystemapi.model.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -18,8 +19,7 @@ public class ParkingGarageExceptionHandler {
     public ResponseEntity<ErrorResponse> invalidVehicleHandler(InvalidParkingGarageRequestException exception) {
 
         log.error("Invalid parking garage request: {}", exception.getMessage());
-        ErrorResponse badRequestError = new ErrorResponse(exception.getErrors());
-        return ResponseEntity.badRequest()
-                .body(badRequestError);
+        ErrorResponse errorResponse = new ErrorResponse(exception.getErrors());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 }

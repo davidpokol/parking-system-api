@@ -1,5 +1,6 @@
 package com.davidpokolol.parkingsystemapi.contoller;
 
+import com.davidpokolol.parkingsystemapi.model.exception.InvalidParkingGarageRequestException;
 import com.davidpokolol.parkingsystemapi.model.response.ParkingGarageResponse;
 import com.davidpokolol.parkingsystemapi.service.model.dto.ParkingGarageDTO;
 import com.davidpokolol.parkingsystemapi.service.service.ParkingGarageService;
@@ -67,7 +68,7 @@ public class ParkingGarageController {
             BindingResult bindingResult) {
 
         log.info(CREATE_PARKING_GARAGE_TEXT, parkingGarage);
-        RequestValidationHandlerUtil.checkForParkingGarageRequestErrors(bindingResult);
+        checkForRequestErrors(bindingResult);
         return Optional.of(parkingGarageService.createParkingGarage(parkingGarage))
                 .map(parkingGarageDtoToResponseConverter::convert)
                 .map(ResponseEntity::ok)
@@ -81,7 +82,7 @@ public class ParkingGarageController {
             BindingResult bindingResult) {
 
         log.info(UPDATE_PARKING_GARAGE_TEXT, id, parkingGarage);
-        RequestValidationHandlerUtil.checkForParkingGarageRequestErrors(bindingResult);
+        checkForRequestErrors(bindingResult);
         return Optional.of(parkingGarageService.updateParkingGarage(id, parkingGarage))
                 .map(parkingGarageDtoToResponseConverter::convert)
                 .map(ResponseEntity::ok)
@@ -95,5 +96,12 @@ public class ParkingGarageController {
         log.info(DELETE_PARKING_GARAGE_TEXT, id);
         parkingGarageService.deleteParkingGarage(id);
         return ResponseEntity.noContent().build();
+    }
+
+    private void checkForRequestErrors(BindingResult bindingResult) {
+        List<String> errors = RequestValidationHandlerUtil.getRequestErrors(bindingResult);
+        if (!errors.isEmpty()) {
+            throw new InvalidParkingGarageRequestException("Invalid parking garage request", errors);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.davidpokolol.parkingsystemapi.contoller;
 
+import com.davidpokolol.parkingsystemapi.model.exception.InvalidParkingRequestException;
 import com.davidpokolol.parkingsystemapi.model.response.ParkingResponse;
 import com.davidpokolol.parkingsystemapi.service.model.dto.ParkingDTO;
 import com.davidpokolol.parkingsystemapi.service.service.ParkingService;
@@ -61,10 +62,17 @@ public class ParkingController {
                                                             BindingResult bindingResult) {
 
         log.info(CREATE_PARKING_RECORD_TEXT, parking);
-        RequestValidationHandlerUtil.checkForParkingRequestErrors(bindingResult);
+        checkForRequestErrors(bindingResult);
         return Optional.of(parkingService.createParkingRecord(parking))
                 .map(parkingDtoToResponseConverter::convert)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.badRequest().build());
+    }
+
+    private void checkForRequestErrors(BindingResult bindingResult) {
+        List<String> errors = RequestValidationHandlerUtil.getRequestErrors(bindingResult);
+        if (!errors.isEmpty()) {
+            throw new InvalidParkingRequestException("Invalid parking request", errors);
+        }
     }
 }

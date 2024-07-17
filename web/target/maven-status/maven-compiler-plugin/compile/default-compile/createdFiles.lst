@@ -1,6 +1,7 @@
 com\davidpokolol\parkingsystemapi\model\response\VehicleResponse.class
 com\davidpokolol\parkingsystemapi\contoller\handler\ParkingExceptionHandler.class
 com\davidpokolol\parkingsystemapi\contoller\VehicleController.class
+com\davidpokolol\parkingsystemapi\contoller\handler\CustomResponseEntityExceptionHandler.class
 com\davidpokolol\parkingsystemapi\contoller\ParkingController.class
 com\davidpokolol\parkingsystemapi\contoller\handler\ParkingGarageExceptionHandler.class
 com\davidpokolol\parkingsystemapi\contoller\handler\VehicleExceptionHandler.class

@@ -67,7 +67,7 @@ public class VehicleController {
                                                       BindingResult bindingResult) throws InvalidVehicleRequestException {
 
         log.info(CREATE_VEHICLE_TEXT, vehicle);
-        RequestValidationHandlerUtil.checkForVehicleRequestErrors(bindingResult);
+        checkForRequestErrors(bindingResult);
         return Optional.of(vehicleService.createVehicle(vehicle))
                 .map(vehicleDtoToResponseConverter::convert)
                 .map(ResponseEntity::ok)
@@ -80,7 +80,7 @@ public class VehicleController {
                                                          BindingResult bindingResult) {
 
         log.info(UPDATE_VEHICLE_TEXT, id, vehicle);
-        RequestValidationHandlerUtil.checkForVehicleRequestErrors(bindingResult);
+        checkForRequestErrors(bindingResult);
         return Optional.of(vehicleService.updateVehicle(id, vehicle))
                 .map(vehicleDtoToResponseConverter::convert)
                 .map(ResponseEntity::ok)
@@ -93,5 +93,12 @@ public class VehicleController {
         log.info(DELETE_VEHICLE_TEXT, id);
         vehicleService.deleteVehicle(id);
         return ResponseEntity.noContent().build();
+    }
+
+    private void checkForRequestErrors(BindingResult bindingResult) {
+        List<String> errors = RequestValidationHandlerUtil.getRequestErrors(bindingResult);
+        if (!errors.isEmpty()) {
+            throw new InvalidVehicleRequestException("Invalid vehicle request", errors);
+        }
     }
 }

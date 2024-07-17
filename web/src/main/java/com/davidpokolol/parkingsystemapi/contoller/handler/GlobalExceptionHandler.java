@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestControllerAdvice
 @Slf4j
-@Order(2)
+@Order(3)
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
