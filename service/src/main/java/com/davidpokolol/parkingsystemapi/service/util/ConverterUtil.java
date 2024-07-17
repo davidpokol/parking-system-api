@@ -1,5 +1,6 @@
 package com.davidpokolol.parkingsystemapi.service.util;
 
+import com.davidpokolol.parkingsystemapi.model.exception.FormatVehicleLicensePlateException;
 import com.davidpokolol.parkingsystemapi.service.model.exception.EnumConversionException;
 import jakarta.annotation.Nonnull;
 
@@ -16,4 +17,26 @@ public class ConverterUtil {
         }
     }
 
+    public static String formatHungarianLicensePlate(String licensePlate) {
+
+        if (licensePlate.contains("-")) {
+            return licensePlate.toUpperCase();
+        }
+        if (licensePlate.length() == 6) {
+            return String.format(
+                    "%s-%s",
+                    licensePlate.substring(0, 3),
+                    licensePlate.substring(3)
+            ).toUpperCase();
+        }
+
+        if (licensePlate.length() == 7) {
+            return String.format(
+                    "%s-%s",
+                    licensePlate.substring(0, 4),
+                    licensePlate.substring(4)
+            ).toUpperCase();
+        }
+        throw new FormatVehicleLicensePlateException("failed to format hungarian license plate");
+    }
 }

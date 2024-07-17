@@ -20,7 +20,7 @@ public class VehicleDtoToEntityConverter implements Converter<VehicleDTO, Vehicl
         log.info("Convert VehicleDTO:{} to Vehicle", source);
         return new Vehicle(
                 null,
-                source.licensePlate().toUpperCase(),
+                ConverterUtil.formatHungarianLicensePlate(source.licensePlate()),
                 ConverterUtil.convertStringToEnum(
                         VehicleCategory.class,
                         source.vehicleCategory().toUpperCase()
