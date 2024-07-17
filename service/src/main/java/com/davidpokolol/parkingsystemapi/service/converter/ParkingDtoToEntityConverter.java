@@ -7,6 +7,7 @@ import com.davidpokolol.parkingsystemapi.model.exception.EntityNotFoundException
 import com.davidpokolol.parkingsystemapi.repository.ParkingGarageRepository;
 import com.davidpokolol.parkingsystemapi.repository.VehicleRepository;
 import com.davidpokolol.parkingsystemapi.service.model.dto.ParkingDTO;
+import com.davidpokolol.parkingsystemapi.service.util.ConverterUtil;
 import jakarta.annotation.Nonnull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +47,9 @@ public class ParkingDtoToEntityConverter implements Converter<ParkingDTO, Parkin
     }
 
     private List<Vehicle> getVehicles(String licensePlate) {
-        return vehicleRepository.findByLicensePlateIgnoreCase(licensePlate)
+
+        final String formattedLicensePlate = ConverterUtil.formatHungarianLicensePlate(licensePlate);
+        return vehicleRepository.findByLicensePlateIgnoreCase(formattedLicensePlate)
                 .map(List::of)
                 .orElseThrow(() -> new EntityNotFoundException(
                         VEHICLE_NOT_FOUND_WITH_LICENSE_PLATE_TEXT + licensePlate

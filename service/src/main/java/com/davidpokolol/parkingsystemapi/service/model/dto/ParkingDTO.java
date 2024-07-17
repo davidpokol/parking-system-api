@@ -1,7 +1,9 @@
 package com.davidpokolol.parkingsystemapi.service.model.dto;
 
+import com.davidpokolol.parkingsystemapi.service.model.exception.InvalidParkingDtoException;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Pattern;
 
 import java.time.LocalDateTime;
@@ -22,9 +24,15 @@ public record ParkingDTO(
         @Past
         @NotNull
         LocalDateTime startTime,
-        @Past
+        @PastOrPresent
         @NotNull
         LocalDateTime endTime
 ) {
 
+    public ParkingDTO {
+
+        if (startTime != null && endTime != null && startTime.isEqual(endTime)) {
+            throw new InvalidParkingDtoException("the 'startTime' and 'endTime' fields must not be equal");
+        }
+    }
 }

@@ -4,6 +4,7 @@ import com.davidpokolol.parkingsystemapi.model.Parking;
 import com.davidpokolol.parkingsystemapi.model.exception.EntityNotFoundException;
 import com.davidpokolol.parkingsystemapi.repository.ParkingRepository;
 import com.davidpokolol.parkingsystemapi.service.model.dto.ParkingDTO;
+import com.davidpokolol.parkingsystemapi.service.model.exception.InvalidParkingDtoException;
 import com.davidpokolol.parkingsystemapi.service.service.ParkingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -55,6 +56,7 @@ public class ParkingServiceImpl implements ParkingService {
     public ParkingDTO createParkingRecord(ParkingDTO parkingRecord) {
 
         log.info(CREATE_VEHICLE_TEXT, parkingRecord);
+
         return Optional.ofNullable(parkingRecord)
                 .map(parkingDtoToEntityConverter::convert)
                 .map(parkingRepository::save)

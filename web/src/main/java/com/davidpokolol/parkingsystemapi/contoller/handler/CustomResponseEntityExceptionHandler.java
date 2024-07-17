@@ -3,7 +3,6 @@ package com.davidpokolol.parkingsystemapi.contoller.handler;
 import com.davidpokolol.parkingsystemapi.model.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.TypeMismatchException;
-import org.springframework.boot.json.JsonParseException;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
