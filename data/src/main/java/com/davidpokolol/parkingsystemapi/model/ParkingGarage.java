@@ -26,6 +26,7 @@ public class ParkingGarage {
     @GeneratedValue
     private Long id;
 
+    @Column(nullable = false, unique = true)
     private String address;
 
     @Column(name = "parking-spaces")

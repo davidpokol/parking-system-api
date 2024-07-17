@@ -36,18 +36,18 @@ public class Parking {
     @ManyToMany
     @JoinTable(
             name = "parkings_vehicles",
-            joinColumns = @JoinColumn(name = "parking_id"),
-            inverseJoinColumns = @JoinColumn(name = "vehicle_id")
+            joinColumns = @JoinColumn(name = "parking_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "vehicle_id", nullable = false)
     )
     private List<Vehicle> vehicles;
 
     @ManyToOne
-    @JoinColumn(name = "parking_garage_id")
+    @JoinColumn(name = "parking_garage_id", nullable = false)
     private ParkingGarage parkingGarage;
 
-    @Column(name = "start-time")
+    @Column(name = "start-time", nullable = false)
     private LocalDateTime startTime;
 
-    @Column(name = "end-time")
+    @Column(name = "end-time", nullable = false)
     private LocalDateTime endTime;
 }

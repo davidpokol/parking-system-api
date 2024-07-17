@@ -22,9 +22,6 @@
 *.tar.gz
 *.rar
 
-# target folders
-target/
-
 # dotenv #
 .env
 

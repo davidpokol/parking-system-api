@@ -1,6 +1,7 @@
 package com.davidpokolol.parkingsystemapi.model;
 
 import com.davidpokolol.parkingsystemapi.model.enums.VehicleCategory;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -26,7 +27,9 @@ public class Vehicle {
     @GeneratedValue
     private Long id;
 
+    @Column(name = "license_plate", nullable = false, unique = true)
     private String licensePlate;
 
+    @Column(name = "vehicle_category", nullable = false)
     private VehicleCategory vehicleCategory;
 }

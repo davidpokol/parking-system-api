@@ -6,6 +6,8 @@ import com.davidpokolol.parkingsystemapi.service.model.exception.EnumConversionE
 import com.davidpokolol.parkingsystemapi.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -19,15 +21,17 @@ import java.util.List;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleNotFoundException(final EntityNotFoundException exception) {
+    public ResponseEntity<ErrorResponse> handleNotFoundException(
+            final EntityNotFoundException exception) {
 
         log.error("Entity is not existing: {}", exception.getMessage());
         ErrorResponse errorResponse = new ErrorResponse(List.of(exception.getMessage()));
-        return ResponseEntity.status(404).body(errorResponse);
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(EnumConversionException.class)
-    public ResponseEntity<ErrorResponse> handleValidationException(EnumConversionException exception) {
+    public ResponseEntity<ErrorResponse> handleValidationException(
+            final EnumConversionException exception) {
 
         log.error("Unable to convert Enum type to String: {}", exception.getMessage());
         String error = String.format("%s - the value must be one of: %s.",
@@ -36,14 +40,24 @@ public class GlobalExceptionHandler {
         );
 
         ErrorResponse errorResponse = new ErrorResponse(List.of(error));
-        return ResponseEntity.badRequest().body(errorResponse);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorResponse> handleDataIntegrityViolationException(
+            final DataIntegrityViolationException exception) {
+
+        log.error("Data integrity violation: {}", exception.getMessage());
+        ErrorResponse errorResponse = new ErrorResponse(List.of(exception.getMessage()));
+        return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleException(final Exception exception) {
+    public ResponseEntity<ErrorResponse> handleException(
+            final Exception exception) {
 
         log.error("Server side problem: {}", exception.getMessage());
         ErrorResponse errorResponse = new ErrorResponse(List.of(exception.getMessage()));
-        return ResponseEntity.status(500).body(errorResponse);
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
