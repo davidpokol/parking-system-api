@@ -1,5 +1,6 @@
 package com.davidpokolol.parkingsystemapi.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class Parking {
     private Long id;
 
     @NotNull
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "parkings_vehicles",
             joinColumns = @JoinColumn(name = "parking_id", nullable = false),
@@ -45,9 +46,8 @@ public class Parking {
     )
     private List<Vehicle> vehicles;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "parking_garage_id", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "parking_garage_id")
     private ParkingGarage parkingGarage;
 
     @NotNull

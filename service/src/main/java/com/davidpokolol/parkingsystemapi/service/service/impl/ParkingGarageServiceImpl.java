@@ -3,6 +3,7 @@ package com.davidpokolol.parkingsystemapi.service.service.impl;
 import com.davidpokolol.parkingsystemapi.model.ParkingGarage;
 import com.davidpokolol.parkingsystemapi.model.exception.EntityNotFoundException;
 import com.davidpokolol.parkingsystemapi.repository.ParkingGarageRepository;
+import com.davidpokolol.parkingsystemapi.repository.ParkingRepository;
 import com.davidpokolol.parkingsystemapi.service.model.dto.ParkingGarageDTO;
 import com.davidpokolol.parkingsystemapi.service.service.ParkingGarageService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +30,7 @@ import static com.davidpokolol.parkingsystemapi.service.constant.ParkingGarageCo
 public class ParkingGarageServiceImpl implements ParkingGarageService {
 
     private final ParkingGarageRepository parkingGarageRepository;
+    private final ParkingRepository parkingRepository;
     private final Converter<ParkingGarageDTO, ParkingGarage> parkingGarageDtoToEntityConverter;
     private final Converter<ParkingGarage, ParkingGarageDTO> parkingGarageEntityToDtoConverter;
 
@@ -91,6 +94,14 @@ public class ParkingGarageServiceImpl implements ParkingGarageService {
     public void deleteParkingGarage(final Long id) {
 
         log.info(DELETE_PARKING_GARAGE_TEXT, id);
-        parkingGarageRepository.deleteById(id);
+        parkingGarageRepository.findById(id).ifPresent(parkingGarage -> {
+            parkingRepository.findAllByParkingGarage(parkingGarage).forEach(parking -> {
+                parking.setVehicles(Collections.emptyList());
+                parking.setParkingGarage(null);
+                parkingRepository.deleteById(parkingRepository.save(parking).getId());
+            });
+
+            parkingGarageRepository.deleteById(id);
+        });
     }
 }
