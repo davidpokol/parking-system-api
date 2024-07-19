@@ -10,13 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@RestControllerAdvice(assignableTypes = ParkingGarageController.class)
 @Slf4j
 @Order(1)
+@RestControllerAdvice(assignableTypes = ParkingGarageController.class)
 public class ParkingGarageExceptionHandler {
 
     @ExceptionHandler(value = InvalidParkingGarageRequestException.class)
-    public ResponseEntity<ErrorResponse> invalidVehicleHandler(InvalidParkingGarageRequestException exception) {
+    public ResponseEntity<ErrorResponse> invalidVehicleHandler(
+            final InvalidParkingGarageRequestException exception) {
 
         log.error("Invalid parking garage request: {}", exception.getMessage());
         ErrorResponse errorResponse = new ErrorResponse(exception.getErrors());

@@ -7,10 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-@Component
 @Slf4j
+@Component
 public class ParkingGarageDtoToResponseConverter implements Converter<ParkingGarageDTO, ParkingGarageResponse> {
-
 
     @Override
     public ParkingGarageResponse convert(@Nonnull final ParkingGarageDTO source) {

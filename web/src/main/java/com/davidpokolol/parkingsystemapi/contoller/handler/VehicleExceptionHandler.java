@@ -10,13 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@RestControllerAdvice(assignableTypes = VehicleController.class)
 @Slf4j
 @Order(1)
+@RestControllerAdvice(assignableTypes = VehicleController.class)
 public class VehicleExceptionHandler {
 
     @ExceptionHandler(value = InvalidVehicleRequestException.class)
-    public ResponseEntity<ErrorResponse> invalidVehicleHandler(InvalidVehicleRequestException exception) {
+    public ResponseEntity<ErrorResponse> invalidVehicleHandler(
+            final InvalidVehicleRequestException exception) {
 
         log.error("Invalid vehicle request: {}", exception.getMessage());
         ErrorResponse errorResponse = new ErrorResponse(exception.getErrors());

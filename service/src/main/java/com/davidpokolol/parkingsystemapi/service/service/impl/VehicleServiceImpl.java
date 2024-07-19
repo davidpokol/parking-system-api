@@ -23,9 +23,10 @@ import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstant
 import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.VEHICLE_NOT_FOUND_WITH_ID_TEXT;
 import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.VEHICLE_NOT_FOUND_WITH_LICENSE_PLATE_TEXT;
 
-@Service
-@RequiredArgsConstructor
+
 @Slf4j
+@RequiredArgsConstructor
+@Service
 public class VehicleServiceImpl implements VehicleService {
 
     private final VehicleRepository vehicleRepository;
@@ -54,7 +55,7 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public Optional<VehicleDTO> getVehicle(String licensePlate) {
+    public Optional<VehicleDTO> getVehicle(final String licensePlate) {
         log.info(GET_VEHICLE_BY_LICENSE_PLATE_TEXT, licensePlate);
         return Optional.ofNullable(vehicleRepository.findByLicensePlateIgnoreCase(licensePlate)
                 .map(vehicleEntityToDtoConverter::convert)

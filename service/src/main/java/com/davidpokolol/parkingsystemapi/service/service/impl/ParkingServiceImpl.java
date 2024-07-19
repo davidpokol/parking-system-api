@@ -4,7 +4,6 @@ import com.davidpokolol.parkingsystemapi.model.Parking;
 import com.davidpokolol.parkingsystemapi.model.exception.EntityNotFoundException;
 import com.davidpokolol.parkingsystemapi.repository.ParkingRepository;
 import com.davidpokolol.parkingsystemapi.service.model.dto.ParkingDTO;
-import com.davidpokolol.parkingsystemapi.service.model.exception.InvalidParkingDtoException;
 import com.davidpokolol.parkingsystemapi.service.service.ParkingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,9 +19,10 @@ import static com.davidpokolol.parkingsystemapi.service.constant.ParkingConstant
 import static com.davidpokolol.parkingsystemapi.service.constant.ParkingConstants.PARKING_RECORD_NOT_FOUND_TEXT;
 import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.CREATE_VEHICLE_TEXT;
 
-@Service
-@RequiredArgsConstructor
+
 @Slf4j
+@RequiredArgsConstructor
+@Service
 public class ParkingServiceImpl implements ParkingService {
 
     private final ParkingRepository parkingRepository;
@@ -41,7 +41,7 @@ public class ParkingServiceImpl implements ParkingService {
     }
 
     @Override
-    public Optional<ParkingDTO> getParkingRecord(Long id) {
+    public Optional<ParkingDTO> getParkingRecord(final Long id) {
 
         log.info(GET_PARKING_RECORD_BY_ID_TEXT, id);
         return Optional.ofNullable(parkingRepository.findById(id)
@@ -53,7 +53,7 @@ public class ParkingServiceImpl implements ParkingService {
     }
 
     @Override
-    public ParkingDTO createParkingRecord(ParkingDTO parkingRecord) {
+    public ParkingDTO createParkingRecord(final ParkingDTO parkingRecord) {
 
         log.info(CREATE_VEHICLE_TEXT, parkingRecord);
 

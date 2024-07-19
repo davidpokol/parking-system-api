@@ -29,10 +29,10 @@ import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstant
 import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.GET_VEHICLE_BY_ID_TEXT;
 import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.UPDATE_VEHICLE_TEXT;
 
-@RestController
-@RequestMapping("/vehicles")
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
+@RequestMapping("/vehicles")
+@RestController
 public class VehicleController {
 
     private final VehicleService vehicleService;
@@ -95,7 +95,7 @@ public class VehicleController {
         return ResponseEntity.noContent().build();
     }
 
-    private void checkForRequestErrors(BindingResult bindingResult) {
+    private void checkForRequestErrors(final BindingResult bindingResult) {
         List<String> errors = RequestValidationHandlerUtil.getRequestErrors(bindingResult);
         if (!errors.isEmpty()) {
             throw new InvalidVehicleRequestException("Invalid vehicle request", errors);

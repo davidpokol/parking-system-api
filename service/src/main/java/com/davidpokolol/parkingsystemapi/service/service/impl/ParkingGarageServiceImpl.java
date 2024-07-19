@@ -21,9 +21,10 @@ import static com.davidpokolol.parkingsystemapi.service.constant.ParkingGarageCo
 import static com.davidpokolol.parkingsystemapi.service.constant.ParkingGarageConstants.PARKING_GARAGE_NOT_FOUND_TEXT;
 import static com.davidpokolol.parkingsystemapi.service.constant.ParkingGarageConstants.UPDATE_PARKING_GARAGE_TEXT;
 
-@Service
-@RequiredArgsConstructor
+
 @Slf4j
+@RequiredArgsConstructor
+@Service
 public class ParkingGarageServiceImpl implements ParkingGarageService {
 
     private final ParkingGarageRepository parkingGarageRepository;
@@ -40,7 +41,7 @@ public class ParkingGarageServiceImpl implements ParkingGarageService {
     }
 
     @Override
-    public Optional<ParkingGarageDTO> getParkingGarage(Long id) {
+    public Optional<ParkingGarageDTO> getParkingGarage(final Long id) {
 
         log.info(GET_PARKING_GARAGE_BY_ID_TEXT, id);
         return Optional.ofNullable(parkingGarageRepository.findById(id)
@@ -52,7 +53,7 @@ public class ParkingGarageServiceImpl implements ParkingGarageService {
     }
 
     @Override
-    public ParkingGarageDTO createParkingGarage(ParkingGarageDTO parkingGarage) {
+    public ParkingGarageDTO createParkingGarage(final ParkingGarageDTO parkingGarage) {
 
         log.info(CREATE_PARKING_GARAGE_TEXT, parkingGarage);
         return Optional.ofNullable(parkingGarage)
@@ -65,7 +66,7 @@ public class ParkingGarageServiceImpl implements ParkingGarageService {
     }
 
     @Override
-    public ParkingGarageDTO updateParkingGarage(Long id, ParkingGarageDTO parkingGarage) {
+    public ParkingGarageDTO updateParkingGarage(final Long id, final ParkingGarageDTO parkingGarage) {
 
         log.info(UPDATE_PARKING_GARAGE_TEXT, id, parkingGarage);
         parkingGarageRepository.findById(id)
@@ -87,7 +88,7 @@ public class ParkingGarageServiceImpl implements ParkingGarageService {
     }
 
     @Override
-    public void deleteParkingGarage(Long id) {
+    public void deleteParkingGarage(final Long id) {
 
         log.info(DELETE_PARKING_GARAGE_TEXT, id);
         parkingGarageRepository.deleteById(id);

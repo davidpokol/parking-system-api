@@ -9,6 +9,9 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -25,14 +28,15 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode
 @ToString
-@Entity
 @Table(name = "parkings")
+@Entity
 public class Parking {
 
     @Id
     @GeneratedValue
     private Long id;
 
+    @NotNull
     @ManyToMany
     @JoinTable(
             name = "parkings_vehicles",
@@ -41,13 +45,18 @@ public class Parking {
     )
     private List<Vehicle> vehicles;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "parking_garage_id", nullable = false)
     private ParkingGarage parkingGarage;
 
+    @NotNull
+    @Past
     @Column(name = "start-time", nullable = false)
     private LocalDateTime startTime;
 
+    @NotNull
+    @PastOrPresent
     @Column(name = "end-time", nullable = false)
     private LocalDateTime endTime;
 }

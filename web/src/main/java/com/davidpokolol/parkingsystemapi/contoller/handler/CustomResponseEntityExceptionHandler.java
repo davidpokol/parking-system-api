@@ -9,28 +9,27 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingPathVariableException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.List;
 
-@ControllerAdvice
 @Slf4j
 @Order(2)
+@RestControllerAdvice
 public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleNoResourceFoundException(
-            NoResourceFoundException ex,
-            HttpHeaders headers,
-            HttpStatusCode status,
-            WebRequest request
+            final NoResourceFoundException ex,
+            final HttpHeaders headers,
+            final HttpStatusCode status,
+            final WebRequest request
     ) {
 
         log.error("No resource found: {}", ex.getMessage());
@@ -41,10 +40,10 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 
     @Override
     protected ResponseEntity<Object> handleTypeMismatch(
-            TypeMismatchException ex,
-            HttpHeaders headers,
-            HttpStatusCode status,
-            WebRequest request
+            final TypeMismatchException ex,
+            final HttpHeaders headers,
+            final HttpStatusCode status,
+            final WebRequest request
     ) {
         ErrorResponse errorResponse = new ErrorResponse(List.of(
                 String.format("Failed to convert '%s' with value '%s'",
@@ -57,10 +56,10 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(
-            HttpMessageNotReadableException ex,
-            HttpHeaders headers,
-            HttpStatusCode status,
-            WebRequest request
+            final HttpMessageNotReadableException ex,
+            final HttpHeaders headers,
+            final HttpStatusCode status,
+            final WebRequest request
     ) {
         log.error("HTTP message not readable: {}", ex.getMessage());
 
@@ -79,10 +78,10 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 
     @Override
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(
-            HttpRequestMethodNotSupportedException ex,
-            HttpHeaders headers,
-            HttpStatusCode status,
-            WebRequest request
+            final HttpRequestMethodNotSupportedException ex,
+            final HttpHeaders headers,
+            final HttpStatusCode status,
+            final WebRequest request
     ) {
         log.error("HTTP request method not supported: {}", ex.getMessage());
 
@@ -93,20 +92,14 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 
     @Override
     protected ResponseEntity<Object> handleMissingPathVariable(
-            MissingPathVariableException ex,
-            HttpHeaders headers,
-            HttpStatusCode status,
-            WebRequest request
+            final MissingPathVariableException ex,
+            final HttpHeaders headers,
+            final HttpStatusCode status,
+            final WebRequest request
     ) {
         log.error("Missing path variable: {}", ex.getMessage());
 
         ErrorResponse errorResponse = new ErrorResponse(List.of(ex.getMessage()));
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
-
-    private String fieldErrorToMessage(FieldError fieldError) {
-        return fieldError.getField() + " - " + fieldError.getDefaultMessage();
-    }
-
 }
-

@@ -1,4 +1,4 @@
-package com.davidpokolol.parkingsystemapi.service.converter;
+package com.davidpokolol.parkingsystemapi.service.converter.EntityToDto;
 
 import com.davidpokolol.parkingsystemapi.model.Vehicle;
 import com.davidpokolol.parkingsystemapi.service.model.dto.VehicleDTO;
@@ -7,14 +7,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-@Component
 @Slf4j
+@Component
 public class VehicleEntityToDtoConverter implements Converter<Vehicle, VehicleDTO> {
 
     @Override
     public VehicleDTO convert(@NonNull final Vehicle source) {
 
-        log.info("Convert Vehicle:{} to VehicleDTO", source);
+        log.info("Convert Vehicle:{} to VehicleDTO.", source);
         return new VehicleDTO(
                 source.getId(),
                 source.getLicensePlate(),

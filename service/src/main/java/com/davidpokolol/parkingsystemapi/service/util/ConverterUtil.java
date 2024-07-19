@@ -17,7 +17,7 @@ public class ConverterUtil {
         }
     }
 
-    public static String formatHungarianLicensePlate(String licensePlate) {
+    public static String formatHungarianLicensePlate(final String licensePlate) {
 
         if (licensePlate.contains("-")) {
             return licensePlate.toUpperCase();
@@ -37,6 +37,6 @@ public class ConverterUtil {
                     licensePlate.substring(4)
             ).toUpperCase();
         }
-        throw new FormatVehicleLicensePlateException("failed to format hungarian license plate");
+        throw new FormatVehicleLicensePlateException("Failed to format license plate into a hungarian format.");
     }
 }

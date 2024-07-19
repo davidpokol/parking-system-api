@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.Arrays;
 import java.util.List;
 
-@RestControllerAdvice
 @Slf4j
 @Order(3)
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)

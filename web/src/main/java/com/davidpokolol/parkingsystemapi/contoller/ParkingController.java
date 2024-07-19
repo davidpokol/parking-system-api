@@ -25,10 +25,10 @@ import static com.davidpokolol.parkingsystemapi.service.constant.ParkingConstant
 import static com.davidpokolol.parkingsystemapi.service.constant.ParkingConstants.GET_ALL_PARKING_RECORDS_TEXT;
 import static com.davidpokolol.parkingsystemapi.service.constant.ParkingConstants.GET_PARKING_RECORD_BY_ID_TEXT;
 
-@RestController
-@RequestMapping("/parking-records")
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
+@RequestMapping("/parking-records")
+@RestController
 public class ParkingController {
 
     private final ParkingService parkingService;
@@ -69,7 +69,7 @@ public class ParkingController {
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
-    private void checkForRequestErrors(BindingResult bindingResult) {
+    private void checkForRequestErrors(final BindingResult bindingResult) {
         List<String> errors = RequestValidationHandlerUtil.getRequestErrors(bindingResult);
         if (!errors.isEmpty()) {
             throw new InvalidParkingRequestException("Invalid parking request", errors);

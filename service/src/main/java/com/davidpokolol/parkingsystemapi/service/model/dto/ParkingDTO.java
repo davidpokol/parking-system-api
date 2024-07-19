@@ -21,18 +21,18 @@ public record ParkingDTO(
         String vehicleLicensePlate,
         @NotNull
         Long parkingGarageId,
+        @NotNull
         @Past
-        @NotNull
         LocalDateTime startTime,
-        @PastOrPresent
         @NotNull
+        @PastOrPresent
         LocalDateTime endTime
 ) {
 
     public ParkingDTO {
 
         if (startTime != null && endTime != null && startTime.isEqual(endTime)) {
-            throw new InvalidParkingDtoException("the 'startTime' and 'endTime' fields must not be equal");
+            throw new InvalidParkingDtoException("The 'startTime' and 'endTime' fields must not be equal.");
         }
     }
 }

@@ -5,9 +5,10 @@ import org.springframework.validation.FieldError;
 
 import java.util.List;
 
+
 public class RequestValidationHandlerUtil {
 
-    public static List<String> getRequestErrors(BindingResult bindingResult) {
+    public static List<String> getRequestErrors(final BindingResult bindingResult) {
         return bindingResult
                 .getFieldErrors()
                 .stream()
@@ -15,7 +16,7 @@ public class RequestValidationHandlerUtil {
                 .toList();
     }
 
-    private static String fieldErrorToMessage(FieldError fieldError) {
+    private static String fieldErrorToMessage(final FieldError fieldError) {
         return fieldError.getField() + " - " + fieldError.getDefaultMessage();
     }
 }

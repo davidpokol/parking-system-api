@@ -29,10 +29,10 @@ import static com.davidpokolol.parkingsystemapi.service.constant.ParkingGarageCo
 import static com.davidpokolol.parkingsystemapi.service.constant.ParkingGarageConstants.GET_PARKING_GARAGE_BY_ID_TEXT;
 import static com.davidpokolol.parkingsystemapi.service.constant.ParkingGarageConstants.UPDATE_PARKING_GARAGE_TEXT;
 
-@RestController
-@RequestMapping("/parking-garages")
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
+@RequestMapping("/parking-garages")
+@RestController
 public class ParkingGarageController {
 
     private final ParkingGarageService parkingGarageService;
@@ -98,7 +98,7 @@ public class ParkingGarageController {
         return ResponseEntity.noContent().build();
     }
 
-    private void checkForRequestErrors(BindingResult bindingResult) {
+    private void checkForRequestErrors(final BindingResult bindingResult) {
         List<String> errors = RequestValidationHandlerUtil.getRequestErrors(bindingResult);
         if (!errors.isEmpty()) {
             throw new InvalidParkingGarageRequestException("Invalid parking garage request", errors);

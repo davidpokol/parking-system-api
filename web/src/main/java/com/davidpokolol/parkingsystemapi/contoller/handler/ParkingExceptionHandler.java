@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.List;
 
-@RestControllerAdvice(assignableTypes = ParkingController.class)
 @Slf4j
 @Order(1)
+@RestControllerAdvice(assignableTypes = ParkingController.class)
 public class ParkingExceptionHandler {
 
     @ExceptionHandler(value = InvalidParkingRequestException.class)
-    public ResponseEntity<ErrorResponse> invalidParkingRequestHandler(InvalidParkingRequestException exception) {
+    public ResponseEntity<ErrorResponse> invalidParkingRequestHandler(
+            final InvalidParkingRequestException exception) {
 
         log.error("Invalid parking request: {}", exception.getMessage());
         ErrorResponse errorResponse = new ErrorResponse(exception.getErrors());
@@ -27,7 +28,8 @@ public class ParkingExceptionHandler {
     }
 
     @ExceptionHandler(value = InvalidParkingDtoException.class)
-    public ResponseEntity<ErrorResponse> invalidParkingDtoHandler(InvalidParkingDtoException exception) {
+    public ResponseEntity<ErrorResponse> invalidParkingDtoHandler(
+            final InvalidParkingDtoException exception) {
 
         log.error(exception.getMessage());
         ErrorResponse errorResponse = new ErrorResponse(List.of(exception.getMessage()));

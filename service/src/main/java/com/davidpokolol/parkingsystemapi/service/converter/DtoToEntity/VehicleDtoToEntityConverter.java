@@ -1,4 +1,4 @@
-package com.davidpokolol.parkingsystemapi.service.converter;
+package com.davidpokolol.parkingsystemapi.service.converter.DtoToEntity;
 
 import com.davidpokolol.parkingsystemapi.model.Vehicle;
 import com.davidpokolol.parkingsystemapi.model.enums.VehicleCategory;
@@ -9,15 +9,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-@Component
 @Slf4j
+@Component
 public class VehicleDtoToEntityConverter implements Converter<VehicleDTO, Vehicle> {
 
 
     @Override
     public Vehicle convert(@NonNull final VehicleDTO source) {
 
-        log.info("Convert VehicleDTO:{} to Vehicle", source);
+        log.info("Convert VehicleDTO:{} to Vehicle.", source);
         return new Vehicle(
                 null,
                 ConverterUtil.formatHungarianLicensePlate(source.licensePlate()),

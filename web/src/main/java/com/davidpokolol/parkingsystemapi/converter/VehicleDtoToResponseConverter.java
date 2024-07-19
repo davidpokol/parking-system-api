@@ -7,8 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-@Component
 @Slf4j
+@Component
 public class VehicleDtoToResponseConverter implements Converter<VehicleDTO, VehicleResponse> {
 
     @Override

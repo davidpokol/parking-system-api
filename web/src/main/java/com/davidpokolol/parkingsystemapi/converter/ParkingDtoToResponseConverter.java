@@ -18,9 +18,9 @@ import org.springframework.stereotype.Component;
 import static com.davidpokolol.parkingsystemapi.service.constant.ParkingGarageConstants.PARKING_GARAGE_NOT_FOUND_TEXT;
 import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.VEHICLE_NOT_FOUND_WITH_LICENSE_PLATE_TEXT;
 
-@Component
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
+@Component
 public class ParkingDtoToResponseConverter implements Converter<ParkingDTO, ParkingResponse> {
 
 

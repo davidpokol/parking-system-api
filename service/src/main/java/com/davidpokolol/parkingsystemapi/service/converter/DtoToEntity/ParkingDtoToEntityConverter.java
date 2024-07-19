@@ -1,4 +1,4 @@
-package com.davidpokolol.parkingsystemapi.service.converter;
+package com.davidpokolol.parkingsystemapi.service.converter.DtoToEntity;
 
 import com.davidpokolol.parkingsystemapi.model.Parking;
 import com.davidpokolol.parkingsystemapi.model.ParkingGarage;
@@ -19,9 +19,10 @@ import java.util.List;
 import static com.davidpokolol.parkingsystemapi.service.constant.ParkingGarageConstants.PARKING_GARAGE_NOT_FOUND_TEXT;
 import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.VEHICLE_NOT_FOUND_WITH_LICENSE_PLATE_TEXT;
 
-@Component
-@RequiredArgsConstructor
+
 @Slf4j
+@RequiredArgsConstructor
+@Component
 public class ParkingDtoToEntityConverter implements Converter<ParkingDTO, Parking> {
 
     private final ParkingGarageRepository parkingGarageRepository;
@@ -30,6 +31,8 @@ public class ParkingDtoToEntityConverter implements Converter<ParkingDTO, Parkin
 
     @Override
     public Parking convert(@Nonnull final ParkingDTO source) {
+
+        log.info("Convert ParkingDTO:{} to Parking.", source);
         return new Parking(
                 null,
                 getVehicles(source.vehicleLicensePlate()),
@@ -39,14 +42,14 @@ public class ParkingDtoToEntityConverter implements Converter<ParkingDTO, Parkin
         );
     }
 
-    private ParkingGarage getParkingGarage(Long id) {
+    private ParkingGarage getParkingGarage(final Long id) {
         return parkingGarageRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(
                         PARKING_GARAGE_NOT_FOUND_TEXT + id
                 ));
     }
 
-    private List<Vehicle> getVehicles(String licensePlate) {
+    private List<Vehicle> getVehicles(final String licensePlate) {
 
         final String formattedLicensePlate = ConverterUtil.formatHungarianLicensePlate(licensePlate);
         return vehicleRepository.findByLicensePlateIgnoreCase(formattedLicensePlate)
