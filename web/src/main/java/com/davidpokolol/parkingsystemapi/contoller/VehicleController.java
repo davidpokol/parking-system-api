@@ -2,8 +2,8 @@ package com.davidpokolol.parkingsystemapi.contoller;
 
 import com.davidpokolol.parkingsystemapi.model.exception.InvalidVehicleRequestException;
 import com.davidpokolol.parkingsystemapi.model.response.VehicleResponse;
-import com.davidpokolol.parkingsystemapi.service.model.dto.VehicleDTO;
-import com.davidpokolol.parkingsystemapi.service.service.VehicleService;
+import com.davidpokolol.parkingsystemapi.model.dto.VehicleDTO;
+import com.davidpokolol.parkingsystemapi.service.VehicleService;
 import com.davidpokolol.parkingsystemapi.util.RequestValidationHandlerUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,11 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
-import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.CREATE_VEHICLE_TEXT;
-import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.DELETE_VEHICLE_TEXT;
-import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.GET_ALL_VEHICLES_TEXT;
-import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.GET_VEHICLE_BY_ID_TEXT;
-import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.UPDATE_VEHICLE_TEXT;
+import static com.davidpokolol.parkingsystemapi.constant.VehicleConstants.CREATE_VEHICLE_TEXT;
+import static com.davidpokolol.parkingsystemapi.constant.VehicleConstants.DELETE_VEHICLE_TEXT;
+import static com.davidpokolol.parkingsystemapi.constant.VehicleConstants.GET_ALL_VEHICLES_TEXT;
+import static com.davidpokolol.parkingsystemapi.constant.VehicleConstants.GET_VEHICLE_BY_ID_TEXT;
+import static com.davidpokolol.parkingsystemapi.constant.VehicleConstants.UPDATE_VEHICLE_TEXT;
 
 @Slf4j
 @RequiredArgsConstructor

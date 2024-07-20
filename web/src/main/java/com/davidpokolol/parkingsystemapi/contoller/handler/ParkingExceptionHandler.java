@@ -3,7 +3,7 @@ package com.davidpokolol.parkingsystemapi.contoller.handler;
 import com.davidpokolol.parkingsystemapi.contoller.ParkingController;
 import com.davidpokolol.parkingsystemapi.model.exception.InvalidParkingRequestException;
 import com.davidpokolol.parkingsystemapi.model.response.ErrorResponse;
-import com.davidpokolol.parkingsystemapi.service.model.exception.InvalidParkingDtoException;
+import com.davidpokolol.parkingsystemapi.model.exception.InvalidParkingDtoException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;

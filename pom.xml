@@ -28,6 +28,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot.version>3.3.1</spring-boot.version>
         <postgres-db.version>42.7.3</postgres-db.version>
+        <jackson-databind.version>2.17.2</jackson-databind.version>
         <lombok.version>1.18.30</lombok.version>
         <dotenv.version>4.0.0</dotenv.version>
     </properties>

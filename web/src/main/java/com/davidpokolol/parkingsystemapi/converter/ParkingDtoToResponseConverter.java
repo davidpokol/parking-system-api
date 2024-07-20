@@ -4,19 +4,19 @@ import com.davidpokolol.parkingsystemapi.model.exception.EntityNotFoundException
 import com.davidpokolol.parkingsystemapi.model.response.ParkingGarageResponse;
 import com.davidpokolol.parkingsystemapi.model.response.ParkingResponse;
 import com.davidpokolol.parkingsystemapi.model.response.VehicleResponse;
-import com.davidpokolol.parkingsystemapi.service.model.dto.ParkingDTO;
-import com.davidpokolol.parkingsystemapi.service.model.dto.ParkingGarageDTO;
-import com.davidpokolol.parkingsystemapi.service.model.dto.VehicleDTO;
-import com.davidpokolol.parkingsystemapi.service.service.ParkingGarageService;
-import com.davidpokolol.parkingsystemapi.service.service.VehicleService;
+import com.davidpokolol.parkingsystemapi.model.dto.ParkingDTO;
+import com.davidpokolol.parkingsystemapi.model.dto.ParkingGarageDTO;
+import com.davidpokolol.parkingsystemapi.model.dto.VehicleDTO;
+import com.davidpokolol.parkingsystemapi.service.ParkingGarageService;
+import com.davidpokolol.parkingsystemapi.service.VehicleService;
 import jakarta.annotation.Nonnull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import static com.davidpokolol.parkingsystemapi.service.constant.ParkingGarageConstants.PARKING_GARAGE_NOT_FOUND_TEXT;
-import static com.davidpokolol.parkingsystemapi.service.constant.VehicleConstants.VEHICLE_NOT_FOUND_WITH_LICENSE_PLATE_TEXT;
+import static com.davidpokolol.parkingsystemapi.constant.ParkingGarageConstants.PARKING_GARAGE_NOT_FOUND_TEXT;
+import static com.davidpokolol.parkingsystemapi.constant.VehicleConstants.VEHICLE_NOT_FOUND_WITH_LICENSE_PLATE_TEXT;
 
 @Slf4j
 @RequiredArgsConstructor

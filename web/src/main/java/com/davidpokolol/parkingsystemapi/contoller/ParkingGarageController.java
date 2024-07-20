@@ -2,8 +2,8 @@ package com.davidpokolol.parkingsystemapi.contoller;
 
 import com.davidpokolol.parkingsystemapi.model.exception.InvalidParkingGarageRequestException;
 import com.davidpokolol.parkingsystemapi.model.response.ParkingGarageResponse;
-import com.davidpokolol.parkingsystemapi.service.model.dto.ParkingGarageDTO;
-import com.davidpokolol.parkingsystemapi.service.service.ParkingGarageService;
+import com.davidpokolol.parkingsystemapi.model.dto.ParkingGarageDTO;
+import com.davidpokolol.parkingsystemapi.service.ParkingGarageService;
 import com.davidpokolol.parkingsystemapi.util.RequestValidationHandlerUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,11 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
-import static com.davidpokolol.parkingsystemapi.service.constant.ParkingGarageConstants.CREATE_PARKING_GARAGE_TEXT;
-import static com.davidpokolol.parkingsystemapi.service.constant.ParkingGarageConstants.DELETE_PARKING_GARAGE_TEXT;
-import static com.davidpokolol.parkingsystemapi.service.constant.ParkingGarageConstants.GET_ALL_PARKING_GARAGES_TEXT;
-import static com.davidpokolol.parkingsystemapi.service.constant.ParkingGarageConstants.GET_PARKING_GARAGE_BY_ID_TEXT;
-import static com.davidpokolol.parkingsystemapi.service.constant.ParkingGarageConstants.UPDATE_PARKING_GARAGE_TEXT;
+import static com.davidpokolol.parkingsystemapi.constant.ParkingGarageConstants.CREATE_PARKING_GARAGE_TEXT;
+import static com.davidpokolol.parkingsystemapi.constant.ParkingGarageConstants.DELETE_PARKING_GARAGE_TEXT;
+import static com.davidpokolol.parkingsystemapi.constant.ParkingGarageConstants.GET_ALL_PARKING_GARAGES_TEXT;
+import static com.davidpokolol.parkingsystemapi.constant.ParkingGarageConstants.GET_PARKING_GARAGE_BY_ID_TEXT;
+import static com.davidpokolol.parkingsystemapi.constant.ParkingGarageConstants.UPDATE_PARKING_GARAGE_TEXT;
 
 @Slf4j
 @RequiredArgsConstructor

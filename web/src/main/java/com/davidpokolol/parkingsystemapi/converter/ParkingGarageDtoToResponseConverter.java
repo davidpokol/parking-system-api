@@ -1,7 +1,7 @@
 package com.davidpokolol.parkingsystemapi.converter;
 
 import com.davidpokolol.parkingsystemapi.model.response.ParkingGarageResponse;
-import com.davidpokolol.parkingsystemapi.service.model.dto.ParkingGarageDTO;
+import com.davidpokolol.parkingsystemapi.model.dto.ParkingGarageDTO;
 import jakarta.annotation.Nonnull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;

@@ -2,7 +2,7 @@ package com.davidpokolol.parkingsystemapi.contoller.handler;
 
 import com.davidpokolol.parkingsystemapi.model.exception.EntityNotFoundException;
 import com.davidpokolol.parkingsystemapi.model.response.ErrorResponse;
-import com.davidpokolol.parkingsystemapi.service.model.exception.EnumConversionException;
+import com.davidpokolol.parkingsystemapi.model.exception.EnumConversionException;
 import com.davidpokolol.parkingsystemapi.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;

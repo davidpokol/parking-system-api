@@ -2,8 +2,8 @@ package com.davidpokolol.parkingsystemapi.contoller;
 
 import com.davidpokolol.parkingsystemapi.model.exception.InvalidParkingRequestException;
 import com.davidpokolol.parkingsystemapi.model.response.ParkingResponse;
-import com.davidpokolol.parkingsystemapi.service.model.dto.ParkingDTO;
-import com.davidpokolol.parkingsystemapi.service.service.ParkingService;
+import com.davidpokolol.parkingsystemapi.model.dto.ParkingDTO;
+import com.davidpokolol.parkingsystemapi.service.ParkingService;
 import com.davidpokolol.parkingsystemapi.util.RequestValidationHandlerUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
-import static com.davidpokolol.parkingsystemapi.service.constant.ParkingConstants.CREATE_PARKING_RECORD_TEXT;
-import static com.davidpokolol.parkingsystemapi.service.constant.ParkingConstants.GET_ALL_PARKING_RECORDS_TEXT;
-import static com.davidpokolol.parkingsystemapi.service.constant.ParkingConstants.GET_PARKING_RECORD_BY_ID_TEXT;
+import static com.davidpokolol.parkingsystemapi.constant.ParkingConstants.CREATE_PARKING_RECORD_TEXT;
+import static com.davidpokolol.parkingsystemapi.constant.ParkingConstants.GET_ALL_PARKING_RECORDS_TEXT;
+import static com.davidpokolol.parkingsystemapi.constant.ParkingConstants.GET_PARKING_RECORD_BY_ID_TEXT;
 
 @Slf4j
 @RequiredArgsConstructor
