@@ -1,10 +1,17 @@
 package com.davidpokolol.parkingsystemapi.contoller;
 
+import com.davidpokolol.parkingsystemapi.model.dto.ParkingGarageDTO;
 import com.davidpokolol.parkingsystemapi.model.exception.InvalidParkingGarageRequestException;
 import com.davidpokolol.parkingsystemapi.model.response.ParkingGarageResponse;
-import com.davidpokolol.parkingsystemapi.model.dto.ParkingGarageDTO;
 import com.davidpokolol.parkingsystemapi.service.ParkingGarageService;
 import com.davidpokolol.parkingsystemapi.util.RequestValidationHandlerUtil;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,14 +37,28 @@ import static com.davidpokolol.parkingsystemapi.constant.ParkingGarageConstants.
 import static com.davidpokolol.parkingsystemapi.constant.ParkingGarageConstants.UPDATE_PARKING_GARAGE_TEXT;
 
 @Slf4j
+@Tag(name = "Parking Garage", description = "Operations for managing parking garages.")
 @RequiredArgsConstructor
-@RequestMapping("/parking-garages")
+@RequestMapping("/v1/parking-garages")
 @RestController
 public class ParkingGarageController {
 
     private final ParkingGarageService parkingGarageService;
     private final Converter<ParkingGarageDTO, ParkingGarageResponse> parkingGarageDtoToResponseConverter;
 
+    @Operation(summary = "Returns all Parking Garages.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful operation.",
+                    content = {@Content(
+                            mediaType = "application/json",
+                            array = @ArraySchema(
+                                    schema = @Schema(
+                                            implementation = ParkingGarageResponse.class
+                                    )
+                            )
+                    )}
+            )
+    })
     @GetMapping
     public ResponseEntity<List<ParkingGarageResponse>> getAllParkingGarages() {
 
@@ -51,6 +72,17 @@ public class ParkingGarageController {
         );
     }
 
+    @Operation(summary = "Returns a Parking Garage.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful operation.",
+                    content = {@Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ParkingGarageResponse.class)
+                    )}
+            ),
+            @ApiResponse(responseCode = "404", description = "Parking Garage not found.",
+                    content = {@Content(schema = @Schema(hidden = true))}),
+    })
     @GetMapping("/{id}")
     public ResponseEntity<ParkingGarageResponse> getParkingGarageById(
             @PathVariable final Long id) {
@@ -62,6 +94,21 @@ public class ParkingGarageController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @Operation(summary = "Adds a Parking Garage.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful operation.",
+                    content = {@Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ParkingGarageResponse.class)
+                    )}
+            ),
+            @ApiResponse(responseCode = "400", description = "Invalid Parking Garage supplied.",
+                    content = {@Content(schema = @Schema(hidden = true))}),
+            @ApiResponse(responseCode = "422", description = "The request body is empty or not well-formed.",
+                    content = {@Content(schema = @Schema(hidden = true))}),
+            @ApiResponse(responseCode = "409", description = "A Parking garage already exist with the given address.",
+                    content = {@Content(schema = @Schema(hidden = true))})
+    })
     @PostMapping
     public ResponseEntity<ParkingGarageResponse> addParkingGarage(
             @Valid @RequestBody final ParkingGarageDTO parkingGarage,
@@ -75,6 +122,21 @@ public class ParkingGarageController {
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
+    @Operation(summary = "Adds a Parking Garage.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful operation.",
+                    content = {@Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ParkingGarageResponse.class)
+                    )}
+            ),
+            @ApiResponse(responseCode = "400", description = "Invalid Parking Garage supplied.",
+                    content = {@Content(schema = @Schema(hidden = true))}),
+            @ApiResponse(responseCode = "422", description = "The request body is empty or not well-formed.",
+                    content = {@Content(schema = @Schema(hidden = true))}),
+            @ApiResponse(responseCode = "409", description = "A Parking Garage already exist with the given address.",
+                    content = {@Content(schema = @Schema(hidden = true))})
+    })
     @PutMapping("/{id}")
     public ResponseEntity<ParkingGarageResponse> updateParkingGarage(
             @PathVariable final Long id,
@@ -89,6 +151,12 @@ public class ParkingGarageController {
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
+    @Operation(summary = "Deletes a Parking Garage.",
+            description = "This operation deletes a Parking Garage, and all associated parking records.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Success",
+                    content = {@Content(schema = @Schema(hidden = true))}),
+    })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteParkingGarage(
             @PathVariable final Long id) {

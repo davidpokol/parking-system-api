@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:9000}
+  port: 9000
 
 spring:
   jpa:
@@ -12,3 +12,10 @@ spring:
     username: ${DB_USER}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
+
+springdoc:
+  swagger-ui:
+    layout: BaseLayout
+    operationsSorter: alpha
+    disable-swagger-default-url: true
+    path: /v1/api-docs

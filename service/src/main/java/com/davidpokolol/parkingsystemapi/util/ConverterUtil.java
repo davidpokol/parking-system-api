@@ -1,7 +1,7 @@
 package com.davidpokolol.parkingsystemapi.util;
 
-import com.davidpokolol.parkingsystemapi.model.exception.FormatVehicleLicensePlateException;
 import com.davidpokolol.parkingsystemapi.model.exception.EnumConversionException;
+import com.davidpokolol.parkingsystemapi.model.exception.FormatVehicleLicensePlateException;
 import jakarta.annotation.Nonnull;
 
 public class ConverterUtil {

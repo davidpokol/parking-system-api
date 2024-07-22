@@ -5,6 +5,7 @@ com\davidpokolol\parkingsystemapi\contoller\handler\CustomResponseEntityExceptio
 com\davidpokolol\parkingsystemapi\contoller\ParkingController.class
 com\davidpokolol\parkingsystemapi\contoller\handler\ParkingGarageExceptionHandler.class
 com\davidpokolol\parkingsystemapi\contoller\handler\VehicleExceptionHandler.class
+com\davidpokolol\parkingsystemapi\config\OpenApiConfig.class
 com\davidpokolol\parkingsystemapi\model\exception\InvalidParkingRequestException.class
 com\davidpokolol\parkingsystemapi\converter\ParkingDtoToResponseConverter.class
 com\davidpokolol\parkingsystemapi\converter\ParkingGarageDtoToResponseConverter.class

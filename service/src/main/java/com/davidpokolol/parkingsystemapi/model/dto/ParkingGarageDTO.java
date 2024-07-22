@@ -1,17 +1,21 @@
 package com.davidpokolol.parkingsystemapi.model.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import org.hibernate.validator.constraints.Range;
 
+@Schema(name = "Parking Garage")
 public record ParkingGarageDTO(
         Long id,
         @NotBlank
         @Size(min = 10, max = 60)
         String address,
         @NotNull
-        @Range(min = 10, max = 1_000)
+        @Min(value = 10)
+        @Max(value = 1_000)
         Integer parkingSpaces
 ) {
 }

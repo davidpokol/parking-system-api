@@ -1,10 +1,18 @@
 package com.davidpokolol.parkingsystemapi.contoller;
 
-import com.davidpokolol.parkingsystemapi.model.exception.InvalidParkingRequestException;
-import com.davidpokolol.parkingsystemapi.model.response.ParkingResponse;
 import com.davidpokolol.parkingsystemapi.model.dto.ParkingDTO;
+import com.davidpokolol.parkingsystemapi.model.exception.InvalidParkingRequestException;
+import com.davidpokolol.parkingsystemapi.model.response.ParkingGarageResponse;
+import com.davidpokolol.parkingsystemapi.model.response.ParkingResponse;
 import com.davidpokolol.parkingsystemapi.service.ParkingService;
 import com.davidpokolol.parkingsystemapi.util.RequestValidationHandlerUtil;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,14 +34,28 @@ import static com.davidpokolol.parkingsystemapi.constant.ParkingConstants.GET_AL
 import static com.davidpokolol.parkingsystemapi.constant.ParkingConstants.GET_PARKING_RECORD_BY_ID_TEXT;
 
 @Slf4j
+@Tag(name = "Parking", description = "Operations for managing parkings.")
 @RequiredArgsConstructor
-@RequestMapping("/parking-records")
+@RequestMapping("/v1/parking-records")
 @RestController
 public class ParkingController {
 
     private final ParkingService parkingService;
-    public final Converter<ParkingDTO, ParkingResponse> parkingDtoToResponseConverter;
+    private final Converter<ParkingDTO, ParkingResponse> parkingDtoToResponseConverter;
 
+    @Operation(summary = "Returns all parkings.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful operation.",
+                    content = {@Content(
+                            mediaType = "application/json",
+                            array = @ArraySchema(
+                                    schema = @Schema(
+                                            implementation = ParkingResponse.class
+                                    )
+                            )
+                    )}
+            )
+    })
     @GetMapping
     public ResponseEntity<List<ParkingResponse>> getAllParkingRecords() {
         log.info(GET_ALL_PARKING_RECORDS_TEXT);
@@ -47,6 +69,19 @@ public class ParkingController {
         );
     }
 
+    @Operation(summary = "Returns a parking record.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful operation.",
+                    content = {@Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ParkingGarageResponse.class)
+                    )}
+            ),
+            @ApiResponse(responseCode = "400", description = "Invalid id supplied.",
+                    content = {@Content(schema = @Schema(hidden = true))}),
+            @ApiResponse(responseCode = "404", description = "Parking not found.",
+                    content = {@Content(schema = @Schema(hidden = true))})
+    })
     @GetMapping("/{id}")
     public ResponseEntity<ParkingResponse> getParkingRecord(@PathVariable final Long id) {
 
@@ -57,6 +92,22 @@ public class ParkingController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @Operation(summary = "Adds a Parking record.",
+            description = "The startTime and endTime properties cannot represent the same date.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful operation.",
+                    content = {@Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ParkingGarageResponse.class)
+                    )}
+            ),
+            @ApiResponse(responseCode = "400", description = "Invalid Parking record supplied.",
+                    content = {@Content(schema = @Schema(hidden = true))}),
+            @ApiResponse(responseCode = "404", description = "Parking not found.",
+                    content = {@Content(schema = @Schema(hidden = true))}),
+            @ApiResponse(responseCode = "422", description = "The request body is empty or not well-formed.",
+                    content = {@Content(schema = @Schema(hidden = true))})
+    })
     @PostMapping
     public ResponseEntity<ParkingResponse> addParkingGarage(@Valid @RequestBody final ParkingDTO parking,
                                                             BindingResult bindingResult) {
