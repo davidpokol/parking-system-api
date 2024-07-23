@@ -17,5 +17,5 @@ springdoc:
   swagger-ui:
     layout: BaseLayout
     operationsSorter: alpha
-    disable-swagger-default-url: true
+    disable-swagger-default-url: false
     path: /v1/api-docs

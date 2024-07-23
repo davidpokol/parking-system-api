@@ -1,14 +1,11 @@
 package com.davidpokolol.parkingsystemapi.util;
 
 import com.davidpokolol.parkingsystemapi.model.exception.EnumConversionException;
-import com.davidpokolol.parkingsystemapi.model.exception.FormatVehicleLicensePlateException;
-import jakarta.annotation.Nonnull;
+import com.davidpokolol.parkingsystemapi.model.exception.StringFormatException;
 
 public class ConverterUtil {
 
-    public static <E extends Enum<E>> E convertStringToEnum(
-            @Nonnull final Class<E> enumType,
-            @Nonnull final String value) {
+    public static <E extends Enum<E>> E convertStringToEnum(final Class<E> enumType, final String value) {
 
         try {
             return Enum.valueOf(enumType, value);
@@ -37,6 +34,6 @@ public class ConverterUtil {
                     licensePlate.substring(4)
             ).toUpperCase();
         }
-        throw new FormatVehicleLicensePlateException("Failed to format license plate into hungarian format.");
+        throw new StringFormatException("Failed to format license plate into hungarian format.");
     }
 }

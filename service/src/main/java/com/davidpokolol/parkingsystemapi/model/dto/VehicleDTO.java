@@ -19,7 +19,6 @@ public record VehicleDTO(
         String licensePlate,
 
         @Enumerated(EnumType.STRING)
-
         @Schema(allowableValues = {"M1", "N1", "N2", "N3", "L", "O", "T", "C",})
         @NotNull
         String vehicleCategory
