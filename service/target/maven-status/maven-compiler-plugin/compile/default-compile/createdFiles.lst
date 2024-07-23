@@ -1,6 +1,6 @@
 com\davidpokolol\parkingsystemapi\service\ParkingGarageService.class
 com\davidpokolol\parkingsystemapi\constant\VehicleConstants.class
-com\davidpokolol\parkingsystemapi\model\exception\FormatVehicleLicensePlateException.class
+com\davidpokolol\parkingsystemapi\model\exception\StringFormatException.class
 com\davidpokolol\parkingsystemapi\converter\EntityToDto\VehicleEntityToDtoConverter.class
 com\davidpokolol\parkingsystemapi\model\dto\ParkingDTO.class
 com\davidpokolol\parkingsystemapi\constant\GlobalConstants.class
