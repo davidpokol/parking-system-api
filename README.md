@@ -24,7 +24,15 @@ You can open it through **Swagger** as well.
 
 Once the application is running, navigate to `http://localhost:9000/v1/api-docs` to access the Swagger UI.
 
-## Run Locally
+## Requirements
+
+## Getting Started
+
+### Prerequisites
+- Java JDK 21
+- Maven (optional)
+
+### Run Locally
 
 Clone the project
 
@@ -40,13 +48,19 @@ Navigate to the project directory
 
 Set up [Environment Variables](#environment-variables)
 
+Install dependencies
+
+```bash
+  ./mvnw install
+```
+
 Start the server
 
 ```bash
   ./mvnw spring-boot:run -pl web
 ```
 
-## Environment Variables
+### Environment Variables
 
 To run this project, you will need to add the following environment variables to your *.env* file. This project uses
 **PostgreSQL**, so create a database if you don't have one yet.

@@ -13,4 +13,8 @@ public interface ParkingRepository extends JpaRepository<Parking, Long> {
 
     List<Parking> findAllByParkingGarage(ParkingGarage parkingGarage);
 
+
+
+
+
 }
