@@ -2,7 +2,7 @@ package com.davidpokolol.parkingsystemapi.constant;
 
 public class ParkingGarageConstants {
 
-    public ParkingGarageConstants() {
+    private ParkingGarageConstants() {
     }
 
     public static final String GET_ALL_PARKING_GARAGES_TEXT = "Getting all parking garages.";
