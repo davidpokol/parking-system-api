@@ -1,10 +1,10 @@
 package com.davidpokolol.parkingsystemapi.service.impl;
 
 import com.davidpokolol.parkingsystemapi.model.ParkingGarage;
+import com.davidpokolol.parkingsystemapi.model.dto.ParkingGarageDTO;
 import com.davidpokolol.parkingsystemapi.model.exception.EntityNotFoundException;
 import com.davidpokolol.parkingsystemapi.repository.ParkingGarageRepository;
 import com.davidpokolol.parkingsystemapi.repository.ParkingRepository;
-import com.davidpokolol.parkingsystemapi.model.dto.ParkingGarageDTO;
 import com.davidpokolol.parkingsystemapi.service.ParkingGarageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -94,7 +94,7 @@ public class ParkingGarageServiceImpl implements ParkingGarageService {
 
         log.info(DELETE_PARKING_GARAGE_TEXT, id);
         parkingGarageRepository.findById(id).ifPresent(parkingGarage -> {
-            parkingRepository.findAllByParkingGarage(parkingGarage).forEach(parking -> {
+            parkingRepository.findAllByParkingGarageId(parkingGarage.getId()).forEach(parking -> {
                 parking.setVehicles(Collections.emptyList());
                 parking.setParkingGarage(null);
                 parkingRepository.deleteById(parkingRepository.save(parking).getId());

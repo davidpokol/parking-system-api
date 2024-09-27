@@ -27,7 +27,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@Table(name = "parkings")
+@Table(name = "parking_records")
 @Entity
 public class Parking {
 
@@ -50,11 +50,11 @@ public class Parking {
 
     @NotNull
     @Past
-    @Column(name = "start-time", nullable = false)
+    @Column(name = "start_time", nullable = false)
     private LocalDateTime startTime;
 
     @NotNull
     @PastOrPresent
-    @Column(name = "end-time", nullable = false)
+    @Column(name = "end_time", nullable = false)
     private LocalDateTime endTime;
 }

@@ -34,6 +34,7 @@ import static com.davidpokolol.parkingsystemapi.constant.VehicleConstants.CREATE
 import static com.davidpokolol.parkingsystemapi.constant.VehicleConstants.DELETE_VEHICLE_TEXT;
 import static com.davidpokolol.parkingsystemapi.constant.VehicleConstants.GET_ALL_VEHICLES_TEXT;
 import static com.davidpokolol.parkingsystemapi.constant.VehicleConstants.GET_VEHICLE_BY_ID_TEXT;
+import static com.davidpokolol.parkingsystemapi.constant.VehicleConstants.GET_VEHICLE_BY_LICENSE_PLATE_TEXT;
 import static com.davidpokolol.parkingsystemapi.constant.VehicleConstants.UPDATE_VEHICLE_TEXT;
 
 @Slf4j
@@ -73,7 +74,7 @@ public class VehicleController {
         return ResponseEntity.ok(vehicles);
     }
 
-    @Operation(summary = "Returns a vehicle.")
+    @Operation(summary = "Returns a vehicle by the given id.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successful operation.",
                     content = {@Content(
@@ -84,11 +85,32 @@ public class VehicleController {
             @ApiResponse(responseCode = "404", description = "Vehicle not found.",
                     content = {@Content(schema = @Schema(hidden = true))})
     })
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<VehicleResponse> getVehicleById(@PathVariable final Long id) {
 
         log.info(GET_VEHICLE_BY_ID_TEXT, id);
         Optional<VehicleDTO> vehicle = vehicleService.getVehicle(id);
+        return vehicle.map(vehicleDtoToResponseConverter::convert)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @Operation(summary = "Returns a vehicle by the given license plate.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful operation.",
+                    content = {@Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = VehicleResponse.class)
+                    )}
+            ),
+            @ApiResponse(responseCode = "404", description = "Vehicle not found.",
+                    content = {@Content(schema = @Schema(hidden = true))})
+    })
+    @GetMapping("/license-plate/{licensePlate}")
+    public ResponseEntity<VehicleResponse> getVehicleByLicensePlate(@PathVariable final String licensePlate) {
+
+        log.info(GET_VEHICLE_BY_LICENSE_PLATE_TEXT, licensePlate);
+        Optional<VehicleDTO> vehicle = vehicleService.getVehicle(licensePlate);
         return vehicle.map(vehicleDtoToResponseConverter::convert)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());

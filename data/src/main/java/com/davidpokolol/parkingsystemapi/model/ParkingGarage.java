@@ -21,7 +21,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Table(name = "parking-garages")
+@Table(name = "parking_garages")
 @Entity
 public class ParkingGarage {
 
